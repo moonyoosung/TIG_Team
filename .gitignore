@@ -3,3 +3,5 @@ TheLab_VR_Project/obj
 TheLab_VR_Project/Temp
 TheLab_VR_Project/*.sln
 TheLab_VR_Project/Library
+TheLab_VR_Project/*.csproj
+TheLab_VR_Project/.vs
