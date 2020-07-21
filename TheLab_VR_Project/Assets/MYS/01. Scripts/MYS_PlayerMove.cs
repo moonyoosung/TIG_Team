@@ -20,6 +20,7 @@ public class MYS_PlayerMove : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
+        transform.forward = Camera.main.transform.forward;
 
         transform.position += dir * speed * Time.deltaTime;
     }
