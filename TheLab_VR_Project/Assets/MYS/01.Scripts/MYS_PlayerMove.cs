@@ -6,11 +6,11 @@ public class MYS_PlayerMove : MonoBehaviour
 {
     // 이동속도
     public float speed = 10f;
-
+    CharacterController cc;
     // Start is called before the first frame update
     void Start()
     {
-        
+        cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -20,8 +20,10 @@ public class MYS_PlayerMove : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 dir = new Vector3(h, 0, v);
+        dir= Camera.main.transform.TransformDirection(dir);
+        dir.y = 0;
         transform.forward = Camera.main.transform.forward;
 
-        transform.position += dir * speed * Time.deltaTime;
+        cc.Move(dir * speed * Time.deltaTime);
     }
 }
