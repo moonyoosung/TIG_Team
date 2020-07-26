@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778315663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.495, y: 0.878, z: 4.4800005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.6448, y: 0.65522, z: 4.8148}
+  m_LocalScale: {x: 0.71043, y: 0.71043, z: 0.71043}
   m_Children: []
   m_Father: {fileID: 1989339433430520663}
   m_RootOrder: 15
@@ -639,6 +639,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   moveTime: 2
+  led: {fileID: 464734537545110383}
+  button: {fileID: 8444310505168746887}
+  btOrizinPos: {x: 0, y: 0, z: 0}
+  fuel: 0
 --- !u!1 &1480066294900898763
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,9 +19,13 @@ public class MYS_PlayerClick : MonoBehaviour
     MYS_TimeMachine TM;
     public MYS_KeypadNumber kn;
 
+    bool grapItem;
+
     void Start()
     {
         TM = GameObject.FindGameObjectWithTag("TM").GetComponent<MYS_TimeMachine>();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -30,7 +34,7 @@ public class MYS_PlayerClick : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, transform.forward);
         RaycastHit hit = new RaycastHit();
         // 키보드의 왼쪽 ctrl 키를 눌렀을 때
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetMouseButtonDown(0))
         {
             // 레이를 쏴서 부딪힌 녀석이 있다면
             if (Physics.Raycast(ray, out hit))
@@ -39,16 +43,17 @@ public class MYS_PlayerClick : MonoBehaviour
                 OnClickKeyPad(hit);
                 //버튼클릭제어 함수
                 OnClickButton(hit);
-
+                //캐비넷제어 함수
+                OnClickCabinet(hit);
             }
         }
         // 왼쪽 F키를 눌렀을 때
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetMouseButton(0))
         {
             //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
                 {
                     //열쇠를 grappoint로 옮긴다.
                     hit.transform.position = grapPoint.position;
@@ -56,16 +61,32 @@ public class MYS_PlayerClick : MonoBehaviour
                     hit.transform.GetComponent<Rigidbody>().useGravity = false;
                     //잡은 오브젝트 정보 저장
                     GrapingObj(hit.transform.gameObject);
+                    if (hit.transform.gameObject.tag == "Possesion")
+                    {
+                        //인벤토리에 저장
+                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                    }
                 }
             }
         }
         // F 버튼이 떼지면
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetMouseButtonUp(0) && grapItem)
         {
             // 잡고 있는 물건의 중력값을 켜준다.
             PutDownGrapObj();
         }
 
+    }
+
+    private void OnClickCabinet(RaycastHit hit)
+    {
+        if (hit.transform.gameObject.name.Contains("Cabinet"))
+        {
+            if (hit.transform.GetComponentInParent<MYS_Cabinet>().keyopen)
+            {
+                hit.transform.GetComponentInParent<MYS_Cabinet>().MoveCabinet();
+            }
+        }
     }
 
     private void OnClickButton(RaycastHit hit)
@@ -85,7 +106,6 @@ public class MYS_PlayerClick : MonoBehaviour
     //버튼 클릭 후 애니메이션 호출 함수
     public void OnCompleteButtonAnim()
     {
-        print("버튼애니메이션 끝");
         if (TM.fuel)
         {
             MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Close;
@@ -100,19 +120,30 @@ public class MYS_PlayerClick : MonoBehaviour
     {
         if (grapObj)
         {
+            grapItem = false;
             grapObj.GetComponent<Rigidbody>().useGravity = true;
             grapObj.transform.parent = null;
         }
     }
-
+    float angleX;
+    float angleY;
     private void GrapingObj(GameObject obj)
     {
         if (!obj)
         {
             return;
         }
+        grapItem = true;
         obj.transform.parent = transform;
         grapObj = obj;
+        // 잡은 아이템의 회전을 고정
+        //float x = Input.GetAxis("Mouse X");
+        //float Y = Input.GetAxis("Mouse Y");
+
+        //angleX += x * 100f * Time.deltaTime;
+        //angleY += Y * 100f * Time.deltaTime;
+        //obj.transform.localEulerAngles = new Vector3(-angleY, angleX, 0);
+        obj.transform.localEulerAngles = Vector3.zero;
 
     }
 
@@ -133,7 +164,6 @@ public class MYS_PlayerClick : MonoBehaviour
                 password[idx] = divisionName[1];
                 //KeypadNumber의 이미지를 바꾸어준다.
                 kn.ChangeKeypadNum(int.Parse(password[idx]), idx);
-                print(password[idx]);
                 idx++;
             }
         }

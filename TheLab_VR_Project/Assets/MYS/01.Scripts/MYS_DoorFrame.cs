@@ -75,7 +75,6 @@ public class MYS_DoorFrame : MonoBehaviour
                 }
                 break;
         }
-        print(angleY);
     }
 
     private void CheatCode()
