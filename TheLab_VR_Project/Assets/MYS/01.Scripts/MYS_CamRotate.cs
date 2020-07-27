@@ -8,6 +8,7 @@ public class MYS_CamRotate : MonoBehaviour
     public float camRotateSpeed = 100f;
     float angleX;
     float angleY;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,4 +27,5 @@ public class MYS_CamRotate : MonoBehaviour
         angleY = Mathf.Clamp(angleY, -60, 60);
         transform.eulerAngles = new Vector3(-angleY, angleX, 0);
     }
+
 }

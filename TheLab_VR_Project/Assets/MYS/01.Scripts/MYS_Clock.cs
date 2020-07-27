@@ -29,7 +29,9 @@ public class MYS_Clock : MonoBehaviour
             // 미래로가면 보인다.
             gameObject.SetActive(true);
             // 해당 년도에 맞는 이미지로 바꾼다.
-            timeImage.sprite = timeYears[3];
+            int idx = 0;
+            idx++;
+            timeImage.sprite = timeYears[idx];
         }
     }
 }
