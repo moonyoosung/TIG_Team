@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 728227177411736202}
   - component: {fileID: -6946959976350712828}
   - component: {fileID: 1287119056}
+  - component: {fileID: -8585862226784399081}
   m_Layer: 10
   m_Name: Clock_Number1
   m_TagString: Possesion
@@ -76,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0da7d8e3d632f47a1e7f7ff1930188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeImage: {fileID: 0}
   timeYears:
   - {fileID: 2800000, guid: dc07bd698bd04ec4289d9b38bf3d8a0c, type: 3}
   - {fileID: 2800000, guid: 27d6d5d11f04b714fbfc82acffe51f60, type: 3}
@@ -84,6 +86,19 @@ MonoBehaviour:
   - {fileID: 2800000, guid: fdc95eebadee9b848897430068d2af2a, type: 3}
   - {fileID: 2800000, guid: 5ffac18b13377854fa93481beca1311d, type: 3}
   findClock: 0
+--- !u!114 &-8585862226784399081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5031080047497282589}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c2bbfcc55f7774f8c51c6940b3d36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 200
 --- !u!1 &6797614240437050521
 GameObject:
   m_ObjectHideFlags: 0

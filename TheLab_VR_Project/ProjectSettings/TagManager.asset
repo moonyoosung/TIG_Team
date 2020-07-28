@@ -6,6 +6,10 @@ TagManager:
   tags:
   - TM
   - Possesion
+  - EquipPoint
+  - Item
+  - Keypad
+  - Enter
   layers:
   - Default
   - TransparentFX

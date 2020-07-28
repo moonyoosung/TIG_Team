@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7013515439213615188}
   - component: {fileID: 7013515439213615191}
   - component: {fileID: 7013515439213615192}
+  - component: {fileID: 8504918838962427709}
   m_Layer: 10
   m_Name: Fuel
   m_TagString: Possesion
@@ -123,3 +124,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cb70e801a76f14f884e56619a220cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8504918838962427709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013515439213615190}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c2bbfcc55f7774f8c51c6940b3d36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotSpeed: 200

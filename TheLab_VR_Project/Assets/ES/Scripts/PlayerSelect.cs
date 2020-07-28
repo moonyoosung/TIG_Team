@@ -13,7 +13,11 @@ public class PlayerSelect : MonoBehaviour
     public GameObject playerCam;
     //public GameObject itemEquipPoint;
     GameObject equipItem;
-
+    MYS_PlayerClick playerClick;
+    private void Start()
+    {
+        playerClick = GetComponent<MYS_PlayerClick>();
+    }
     private void Awake()
     {
 
@@ -22,10 +26,13 @@ public class PlayerSelect : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (equipItem)
         {
-            DownItem(equipItem);
-
+            if (Input.GetButtonDown("Fire2"))
+            {
+                DownItem(equipItem);
+                playerClick.PutDownGrapObj();
+            }
         }
     }
 
@@ -34,12 +41,12 @@ public class PlayerSelect : MonoBehaviour
     {
 
         // 열쇠에 닿으면, 
-        if (col.gameObject.tag == "Item")
+        if (col.gameObject.tag == "Item" || col.gameObject.tag == "Possesion")
         {
             itemPos = col.transform.position;
             //열쇠를 playerEquipPoint로 이동
             col.transform.position = playerEquipPoint.transform.position;
-            
+
             //아이템을 EquipPoint의 자식으로 이동
             col.transform.parent = playerEquipPoint.transform;
             //리지드바디의 키네메틱을 껐다 켰다
@@ -68,6 +75,7 @@ public class PlayerSelect : MonoBehaviour
         item.transform.GetComponent<Rigidbody>().isKinematic = false;
         //아이템의 상속관계를 해제
         item.transform.parent = null;
+        equipItem = null;
         //아이템이 원래 있던 위치로 돌아간다.
         print(item.gameObject.name + "을 내려놓다");
 

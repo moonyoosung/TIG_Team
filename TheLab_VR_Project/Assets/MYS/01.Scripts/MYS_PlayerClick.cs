@@ -31,7 +31,7 @@ public class MYS_PlayerClick : MonoBehaviour
     void Update()
     {
 
-        Ray ray = new Ray(Camera.main.transform.position, transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit = new RaycastHit();
         // 키보드의 왼쪽 ctrl 키를 눌렀을 때
         if (Input.GetMouseButtonDown(0))
@@ -39,6 +39,8 @@ public class MYS_PlayerClick : MonoBehaviour
             // 레이를 쏴서 부딪힌 녀석이 있다면
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.DrawLine(Camera.main.transform.position, hit.transform.position);
+
                 //Keypad제어 함수
                 OnClickKeyPad(hit);
                 //버튼클릭제어 함수
@@ -48,35 +50,35 @@ public class MYS_PlayerClick : MonoBehaviour
             }
         }
         // 왼쪽 F키를 눌렀을 때
-        if (Input.GetMouseButton(0))
-        {
-            //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
-                {
-                    //열쇠를 grappoint로 옮긴다.
-                    hit.transform.position = grapPoint.position;
-                    //열쇠의 중력값을 꺼준다.
-                    hit.transform.GetComponent<Rigidbody>().useGravity = false;
-                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+        //if (Input.GetMouseButton(0))
+        //{
+        //    //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+        //        {
+        //            //열쇠를 grappoint로 옮긴다.
+        //            hit.transform.position = grapPoint.position;
+        //            //열쇠의 중력값을 꺼준다.
+        //            hit.transform.GetComponent<Rigidbody>().useGravity = false;
+        //            hit.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-                    //잡은 오브젝트 정보 저장
-                    GrapingObj(hit.transform.gameObject);
-                    if (hit.transform.gameObject.tag == "Possesion")
-                    {
-                        //인벤토리에 저장
-                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-                    }
-                }
-            }
-        }
+        //            //잡은 오브젝트 정보 저장
+        //            GrapingObj(hit.transform.gameObject);
+        //            if (hit.transform.gameObject.tag == "Possesion")
+        //            {
+        //                //인벤토리에 저장
+        //                MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+        //            }
+        //        }
+        //    }
+        //}
         // F 버튼이 떼지면
-        if (Input.GetMouseButtonUp(0) && grapItem)
-        {
-            // 잡고 있는 물건의 중력값을 켜준다.
-            PutDownGrapObj();
-        }
+        //if (Input.GetMouseButtonUp(0) && grapItem)
+        //{
+        //    // 잡고 있는 물건의 중력값을 켜준다.
+        //    PutDownGrapObj();
+        //}
 
     }
 
@@ -118,7 +120,7 @@ public class MYS_PlayerClick : MonoBehaviour
         TM.ButtonReset();
     }
 
-    private void PutDownGrapObj()
+    public void PutDownGrapObj()
     {
         if (grapObj)
         {
@@ -153,7 +155,7 @@ public class MYS_PlayerClick : MonoBehaviour
     private void OnClickKeyPad(RaycastHit hit)
     {
         //만약 부딪힌 녀석의 이름에 Keypad가 있다면
-        if (hit.transform.gameObject.name.Contains("Keypad"))
+        if (hit.transform.gameObject.tag == "Keypad")
         {
             //녀석의 이름을 가져와서 Password에 넣는다.
             string[] divisionName = hit.transform.gameObject.name.Split('_');
@@ -170,7 +172,7 @@ public class MYS_PlayerClick : MonoBehaviour
                 idx++;
             }
         }
-        else if (hit.transform.gameObject.name.Contains("Enter"))
+        else if (hit.transform.gameObject.tag == "Enter")
         {
             int count = 0;
             //정답 패스워드와 비교하여 정답or오답을 출력한다.
@@ -207,4 +209,5 @@ public class MYS_PlayerClick : MonoBehaviour
             password[i] = "-";
         }
     }
+
 }
