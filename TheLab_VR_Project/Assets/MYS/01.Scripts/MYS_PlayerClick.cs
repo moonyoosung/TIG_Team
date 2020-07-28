@@ -9,7 +9,7 @@ public class MYS_PlayerClick : MonoBehaviour
     public Image pointer;
     // 비밀번호를 담을 변수
     string[] password = new string[4];
-    public int[] answerPW = { 1, 2, 3, 4 };
+    public int[] answerPW = { 6, 5, 4, 9 };
     // 물건 집을 위치
     public Transform grapPoint;
     // 잡은 물건을 저장할 변수
@@ -18,7 +18,7 @@ public class MYS_PlayerClick : MonoBehaviour
 
     MYS_TimeMachine TM;
     public MYS_KeypadNumber kn;
-
+    MYS_CamRotate cm;
     bool grapItem;
 
     void Start()
@@ -26,21 +26,22 @@ public class MYS_PlayerClick : MonoBehaviour
         TM = GameObject.FindGameObjectWithTag("TM").GetComponent<MYS_TimeMachine>();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+        cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
     }
 
     void Update()
     {
 
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position ,Camera.main.transform.forward);
+        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*10f, Color.blue, 3f);
+
         RaycastHit hit = new RaycastHit();
-        // 키보드의 왼쪽 ctrl 키를 눌렀을 때
+        // 왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButtonDown(0))
         {
             // 레이를 쏴서 부딪힌 녀석이 있다면
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawLine(Camera.main.transform.position, hit.transform.position);
-
                 //Keypad제어 함수
                 OnClickKeyPad(hit);
                 //버튼클릭제어 함수
@@ -49,37 +50,55 @@ public class MYS_PlayerClick : MonoBehaviour
                 OnClickCabinet(hit);
             }
         }
-        // 왼쪽 F키를 눌렀을 때
-        //if (Input.GetMouseButton(0))
-        //{
-        //    //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
-        //    if (Physics.Raycast(ray, out hit))
-        //    {
-        //        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
-        //        {
-        //            //열쇠를 grappoint로 옮긴다.
-        //            hit.transform.position = grapPoint.position;
-        //            //열쇠의 중력값을 꺼준다.
-        //            hit.transform.GetComponent<Rigidbody>().useGravity = false;
-        //            hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+        //왼쪽 마우스 버튼을 눌렀을 때
+        if (Input.GetMouseButton(0))
+        {
+            //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+                {
+                    //열쇠를 grappoint로 옮긴다.
+                    hit.transform.position = grapPoint.position;
+                    //열쇠의 중력값을 꺼준다.
+                    hit.transform.GetComponent<Rigidbody>().useGravity = false;
+                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-        //            //잡은 오브젝트 정보 저장
-        //            GrapingObj(hit.transform.gameObject);
-        //            if (hit.transform.gameObject.tag == "Possesion")
-        //            {
-        //                //인벤토리에 저장
-        //                MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-        //            }
-        //        }
-        //    }
-        //}
-        // F 버튼이 떼지면
-        //if (Input.GetMouseButtonUp(0) && grapItem)
-        //{
-        //    // 잡고 있는 물건의 중력값을 켜준다.
-        //    PutDownGrapObj();
-        //}
+                    //잡은 오브젝트 정보 저장
+                    GrapingObj(hit.transform.gameObject);
 
+                    if (hit.transform.gameObject.tag == "Possesion")
+                    {
+                        //인벤토리에 저장
+                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                    }
+
+                }
+            }
+
+        }
+        //왼쪽 마우스 버튼이 떼지면
+        if (Input.GetMouseButtonUp(0) && grapItem)
+        {
+            // 잡고 있는 물건의 중력값을 켜준다.
+            PutDownGrapObj();
+        }
+        if (grapItem)
+        {
+            //만약 키보드 왼쪽 Alt키를 누르면
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                //카메라 회전을 멈추고 아이템을 회전시킨다.
+                cm.enabled = false;
+                grapObj.transform.GetComponent<ItemRotate>().enabled = true;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftAlt))
+            {
+                //아이템 회전을 멈추고 카메라를 회전시킨다.
+                cm.enabled = true;
+                grapObj.transform.GetComponent<ItemRotate>().enabled = false;
+            }
+        }
     }
 
     private void OnClickCabinet(RaycastHit hit)
@@ -130,8 +149,7 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.transform.parent = null;
         }
     }
-    float angleX;
-    float angleY;
+
     private void GrapingObj(GameObject obj)
     {
         if (!obj)
@@ -141,15 +159,6 @@ public class MYS_PlayerClick : MonoBehaviour
         grapItem = true;
         obj.transform.parent = transform;
         grapObj = obj;
-        // 잡은 아이템의 회전을 고정
-        //float x = Input.GetAxis("Mouse X");
-        //float Y = Input.GetAxis("Mouse Y");
-
-        //angleX += x * 100f * Time.deltaTime;
-        //angleY += Y * 100f * Time.deltaTime;
-        //obj.transform.localEulerAngles = new Vector3(-angleY, angleX, 0);
-        obj.transform.localEulerAngles = Vector3.zero;
-
     }
 
     private void OnClickKeyPad(RaycastHit hit)
@@ -157,6 +166,8 @@ public class MYS_PlayerClick : MonoBehaviour
         //만약 부딪힌 녀석의 이름에 Keypad가 있다면
         if (hit.transform.gameObject.tag == "Keypad")
         {
+            Debug.DrawRay(Camera.main.transform.position, hit.transform.position, Color.red, 3f);
+            //print(hit.transform.position);
             //녀석의 이름을 가져와서 Password에 넣는다.
             string[] divisionName = hit.transform.gameObject.name.Split('_');
             //idx예외처리

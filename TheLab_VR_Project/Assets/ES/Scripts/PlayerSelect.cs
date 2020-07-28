@@ -13,10 +13,10 @@ public class PlayerSelect : MonoBehaviour
     public GameObject playerCam;
     //public GameObject itemEquipPoint;
     GameObject equipItem;
-    MYS_PlayerClick playerClick;
+   // MYS_PlayerClick playerClick;
     private void Start()
     {
-        playerClick = GetComponent<MYS_PlayerClick>();
+        //playerClick = GetComponent<MYS_PlayerClick>();
     }
     private void Awake()
     {
@@ -28,39 +28,41 @@ public class PlayerSelect : MonoBehaviour
     {
         if (equipItem)
         {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                DownItem(equipItem);
-                playerClick.PutDownGrapObj();
-            }
+            //if (Input.GetButtonDown("Fire2"))
+            //{
+            //    DownItem(equipItem);
+            //    //playerClick.PutDownGrapObj();
+            //}
         }
     }
 
     Vector3 itemPos;
-    public void OnControllerColliderHit(ControllerColliderHit col)
-    {
+    //public void OnControllerColliderHit(ControllerColliderHit col)
+    //{
 
-        // 열쇠에 닿으면, 
-        if (col.gameObject.tag == "Item" || col.gameObject.tag == "Possesion")
-        {
-            itemPos = col.transform.position;
-            //열쇠를 playerEquipPoint로 이동
-            col.transform.position = playerEquipPoint.transform.position;
+    //    // 열쇠에 닿으면, 
+    //    if (col.gameObject.tag == "Item" || col.gameObject.tag == "Possesion")
+    //    {
+    //        itemPos = col.transform.position;
+    //        //열쇠를 playerEquipPoint로 이동
+    //        col.transform.position = playerEquipPoint.transform.position;
 
-            //아이템을 EquipPoint의 자식으로 이동
-            col.transform.parent = playerEquipPoint.transform;
-            //리지드바디의 키네메틱을 껐다 켰다
-            col.transform.GetComponent<Rigidbody>().isKinematic = true;
+    //        //아이템을 EquipPoint의 자식으로 이동
+    //        col.transform.parent = playerEquipPoint.transform;
+    //        //리지드바디의 키네메틱을 껐다 켰다
+    //        col.transform.GetComponent<Rigidbody>().isKinematic = true;
 
-            //equipItem에 col Item을 넣어주고,
-            equipItem = col.gameObject;
+    //        //equipItem에 col Item을 넣어주고,
+    //        equipItem = col.gameObject;
 
-            //Player의 카메라의 캠 로테이트를 꺼주고, 아이템의 아이템 로테이트 스크립만 켜준다.
-            playerCam.GetComponent<CamRotate>().enabled = false;
-            col.gameObject.GetComponent<ItemRotate>().enabled = true;
-            print(col.gameObject.name);
-        }
-    }
+    //        //Player의 카메라의 캠 로테이트를 꺼주고, 아이템의 아이템 로테이트 스크립만 켜준다.
+    //        playerCam.GetComponent<CamRotate>().enabled = false;
+    //        col.gameObject.GetComponent<ItemRotate>().enabled = true;
+    //        //인벤토리에 저장
+    //        //MYS_Inventory.Instance.SaveItemToInven(col.transform.gameObject);
+    //        print(col.gameObject.name);
+    //    }
+    //}
 
 
 

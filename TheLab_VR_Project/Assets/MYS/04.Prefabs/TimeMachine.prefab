@@ -638,11 +638,16 @@ MonoBehaviour:
   TMPos:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   moveTime: 2
   led: {fileID: 464734537545110383}
   button: {fileID: 8444310505168746887}
   btOrizinPos: {x: 0, y: 0, z: 0}
   fuel: 0
+  water: {fileID: 0}
 --- !u!1 &1480066294900898763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1836,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2127098778615870619}
     m_Modifications:
+    - target: {fileID: 7958089478683108786, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
     - target: {fileID: 7958089478687818924, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1870,6 +1880,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479193384592, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
       objectReference: {fileID: 0}
     - target: {fileID: 7958089479323112815, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
         type: 3}
@@ -1904,7 +1919,7 @@ PrefabInstance:
     - target: {fileID: 7958089479378684752, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.76333314
+      value: -0.73
       objectReference: {fileID: 0}
     - target: {fileID: 7958089479378684752, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
         type: 3}
@@ -1966,6 +1981,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyPad_PW
       objectReference: {fileID: 0}
+    - target: {fileID: 7958089479382225273, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479502573692, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479843097143, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479943237369, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479945914383, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
     - target: {fileID: 7958089479953438594, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -1985,6 +2025,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479958204275, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enter
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089479973644612, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7958089480406478196, guid: 28145d288b4eb1f48bd6728c1e4ffe0d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Keypad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28145d288b4eb1f48bd6728c1e4ffe0d, type: 3}

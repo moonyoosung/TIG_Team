@@ -49,6 +49,11 @@ public class MYS_TimeMachine : MonoBehaviour
                 TMMove();
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            mapIdx = 3;
+        }
     }
     //타임머신이 작동되면 플레이어를 자식으로 넣고 흔들리다가 이동한다.
 
@@ -96,6 +101,11 @@ public class MYS_TimeMachine : MonoBehaviour
         {
             WaterUp();
         }
+        //물차오르는 다음맵
+        if (mapIdx == 5)
+        {
+            MYS_Water.Instace.waterInUI.SetActive(false);
+        }
     }
 
     // 플레이어를 자식으로 넣을지 말지 결정하는 함수
@@ -137,7 +147,7 @@ public class MYS_TimeMachine : MonoBehaviour
         // 서서히 물이 차오른다.
         iTween.MoveTo(water, iTween.Hash(
                 "position", transform.position + new Vector3(0, 5f, 0),
-                "speed", 0.1f,
+                "speed", 0.2f,
                 "easetype", iTween.EaseType.linear));
         // 캐릭터가 물에 잠기면 UI를 켜준다.
         // 
