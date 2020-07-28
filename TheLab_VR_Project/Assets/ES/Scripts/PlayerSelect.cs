@@ -6,54 +6,71 @@ public class PlayerSelect : MonoBehaviour
 {
 
 
-    // 플레이어가 아이템을 만지면, getTrigger하면 아이템이 눈앞으로 이동해 온다.
+    // 플레이어가 아이템과 충돌하면, 아이템이 눈 앞에 온다.
     // 플레이어가 아이템을 앞뒤좌우로 돌려본다.
-  
-    public GameObject playerEquipPoint;
 
-    
-    
+    public GameObject playerEquipPoint;
+    public GameObject playerCam;
+    //public GameObject itemEquipPoint;
+    GameObject equipItem;
 
     private void Awake()
     {
 
 
-    } 
+    }
 
     void Update()
     {
-    
+        if (Input.GetButtonDown("Fire1"))
+        {
+            DownItem(equipItem);
+
+        }
     }
 
-    private void OnTriggerEnter(Collider col)
+    Vector3 itemPos;
+    public void OnControllerColliderHit(ControllerColliderHit col)
     {
+
         // 열쇠에 닿으면, 
         if (col.gameObject.tag == "Item")
         {
+            itemPos = col.transform.position;
             //열쇠를 playerEquipPoint로 이동
             col.transform.position = playerEquipPoint.transform.position;
-            //근데, 여기에서 문제는, 아이템이 EquipPoint로 왔다가 떨어짐..
-            //계속 붙여놓는 방법은?
-
-            ObjectRotate();
             
+            //아이템을 EquipPoint의 자식으로 이동
+            col.transform.parent = playerEquipPoint.transform;
+            //리지드바디의 키네메틱을 껐다 켰다
+            col.transform.GetComponent<Rigidbody>().isKinematic = true;
+
+            //equipItem에 col Item을 넣어주고,
+            equipItem = col.gameObject;
+
+            //Player의 카메라의 캠 로테이트를 꺼주고, 아이템의 아이템 로테이트 스크립만 켜준다.
+            playerCam.GetComponent<CamRotate>().enabled = false;
+            col.gameObject.GetComponent<ItemRotate>().enabled = true;
             print(col.gameObject.name);
         }
-         
     }
 
-    void ObjectRotate()
+
+
+
+    void DownItem(GameObject item)
     {
-        //오브젝트를 돌려 본다.
+        //아이템이 본래 있던 위치로 돌아간다.
+        item.transform.position = itemPos;
+        //Player의 카메라의 캠 로테이트를 켜주고, 아이템의 아이템 로테이트 스크립만 꺼준다.
+        playerCam.GetComponent<CamRotate>().enabled = true;
+        item.gameObject.GetComponent<ItemRotate>().enabled = false;
+        item.transform.GetComponent<Rigidbody>().isKinematic = false;
+        //아이템의 상속관계를 해제
+        item.transform.parent = null;
+        //아이템이 원래 있던 위치로 돌아간다.
+        print(item.gameObject.name + "을 내려놓다");
 
     }
 
-    /*private void OnTriggerExit(Collider col)
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-          //아이템이 원래 있던 위치로 돌아간다.
-        }
-    }
-    */
 }

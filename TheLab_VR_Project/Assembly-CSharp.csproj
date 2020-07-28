@@ -63,8 +63,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ES\Scripts\CamRotate.cs" />
+    <Compile Include="Assets\ES\Scripts\ItemRotate.cs" />
+    <Compile Include="Assets\ES\Scripts\PlayerMove.cs" />
+    <Compile Include="Assets\ES\Scripts\PlayerSelect.cs" />
+    <Compile Include="Assets\ES\Scripts\Teleport.cs" />
+    <Compile Include="Assets\Keypad\Script\Playsound.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Cabinet.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_CamRotate.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Clock.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_DoorFrame.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Fuel.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Inventory.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Key.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_KeypadNumber.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_PlayerClick.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_PlayerMove.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_TimeMachine.cs" />
+    <Compile Include="Assets\MYS\01.Scripts\MYS_Water.cs" />
     <Compile Include="Assets\Scripts\anotherTest.cs" />
-    <Compile Include="Assets\TestScripts.cs" />
+    <None Include="Assets\Tim's Assets\Doors\Shader\BloodyDoor.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -614,6 +632,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>D:/Jenny EunSeon Cho/TIG_Team/TheLab_VR_Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>D:/Jenny EunSeon Cho/TIG_Team/TheLab_VR_Project/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/Jenny EunSeon Cho/TIG_Team/TheLab_VR_Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -621,7 +642,12 @@
       <HintPath>D:/Jenny EunSeon Cho/TIG_Team/TheLab_VR_Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{CF800854-C725-690C-4F5B-BB074E334A42}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

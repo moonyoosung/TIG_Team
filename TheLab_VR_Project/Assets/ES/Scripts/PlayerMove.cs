@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-
+    float yVelocity = 10;
     void Update()
     {
         // 사용자 키 입력에 따라 이동
@@ -40,26 +40,10 @@ public class PlayerMove : MonoBehaviour
         dir = Camera.main.transform.TransformDirection(dir);
         dir.Normalize();
         dir.y = 0;
+        transform.position -= Vector3.down*yVelocity*Time.deltaTime;
         cc.Move(dir * moveSpeed * Time.fixedDeltaTime);
 
     }
 
-    /*private void OnTriggerEnter(Collider col)
-    {
-        // 열쇠에 닿으면, 
-        if (col.transform.tag == "Item")
-        {
-            if(itemSelect == true)
-            {
-               
-            }
-            
-            // 열쇠가 중앙에 보이는 카메라(ItemCamera)로 전환
 
-            // 마우스가 움직이는 방향에 따라 오브젝트가 움직인다.
-
-            print(col.gameObject.name);
-        }
-    }
-    */
 }
