@@ -59,6 +59,8 @@ public class MYS_PlayerClick : MonoBehaviour
                     hit.transform.position = grapPoint.position;
                     //열쇠의 중력값을 꺼준다.
                     hit.transform.GetComponent<Rigidbody>().useGravity = false;
+                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+
                     //잡은 오브젝트 정보 저장
                     GrapingObj(hit.transform.gameObject);
                     if (hit.transform.gameObject.tag == "Possesion")
@@ -122,6 +124,7 @@ public class MYS_PlayerClick : MonoBehaviour
         {
             grapItem = false;
             grapObj.GetComponent<Rigidbody>().useGravity = true;
+            grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;
         }
     }

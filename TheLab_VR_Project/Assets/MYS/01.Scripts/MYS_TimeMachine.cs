@@ -134,9 +134,12 @@ public class MYS_TimeMachine : MonoBehaviour
     // 서서히 차오르는 물
     public void WaterUp()
     {
+        // 서서히 물이 차오른다.
         iTween.MoveTo(water, iTween.Hash(
                 "position", transform.position + new Vector3(0, 5f, 0),
-                "speed", 0.2f,
+                "speed", 0.1f,
                 "easetype", iTween.EaseType.linear));
+        // 캐릭터가 물에 잠기면 UI를 켜준다.
+        // 
     }
 }

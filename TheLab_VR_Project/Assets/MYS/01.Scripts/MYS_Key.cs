@@ -15,7 +15,7 @@ public class MYS_Key : MonoBehaviour
         {
             //게임오브젝트의 레이어를 바꾼다.
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
-            transform.GetComponent<BoxCollider>().enabled = false;
+            //transform.GetComponent<BoxCollider>().enabled = false;
             transform.GetComponent<Rigidbody>().isKinematic = true;
             transform.forward = other.gameObject.transform.up;
             hit = other.gameObject;
@@ -31,6 +31,7 @@ public class MYS_Key : MonoBehaviour
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
         }
     }
+
     void RotateKey()
     {
         iTween.RotateTo(gameObject, iTween.Hash(
