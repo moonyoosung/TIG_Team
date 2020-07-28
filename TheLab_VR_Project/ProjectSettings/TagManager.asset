@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Keypad
   - Enter
+  - Teleport
   layers:
   - Default
   - TransparentFX
