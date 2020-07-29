@@ -11,6 +11,8 @@ TagManager:
   - Keypad
   - Enter
   - Teleport
+  - PuzzlePlane
+  - Block
   layers:
   - Default
   - TransparentFX

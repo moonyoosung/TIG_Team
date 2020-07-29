@@ -53,9 +53,10 @@ public class MYS_PlayerClick : MonoBehaviour
         //왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButton(0))
         {
-            //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.DrawRay(Camera.main.transform.position, hit.point, Color.red, 3f);
+                //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
                 {
                     //열쇠를 grappoint로 옮긴다.
@@ -148,6 +149,10 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;
         }
+        if (grapObj.tag.Contains("Block"))
+        {
+            grapObj.GetComponent<Rigidbody>().useGravity = false;
+        }
     }
 
     private void GrapingObj(GameObject obj)
@@ -166,7 +171,6 @@ public class MYS_PlayerClick : MonoBehaviour
         //만약 부딪힌 녀석의 이름에 Keypad가 있다면
         if (hit.transform.gameObject.tag == "Keypad")
         {
-            Debug.DrawRay(Camera.main.transform.position, hit.transform.position, Color.red, 3f);
             //print(hit.transform.position);
             //녀석의 이름을 가져와서 Password에 넣는다.
             string[] divisionName = hit.transform.gameObject.name.Split('_');

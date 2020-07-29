@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MYS_PuzzleIdx : MonoBehaviour
+public class MYS_LeftBlock : MonoBehaviour
 {
     public MYS_PlayerClick pc;
     public CheckBlocks cb;
@@ -11,19 +11,13 @@ public class MYS_PuzzleIdx : MonoBehaviour
     {
         if (other.gameObject.tag == "PuzzlePlane")
         {
-            gameObject.transform.position = cb.linePos.position;
-            transform.up = cb.linePos.up;
-            StartCoroutine(SetPos());
+            gameObject.transform.position = cb.leftPos.position;
+            transform.up = cb.leftPos.up;
+            transform.forward = cb.leftPos.forward;
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
-            print("퍼즐 충돌");
+
         }
     }
-    IEnumerator SetPos()
-    {
-        yield return new WaitForFixedUpdate();
-        transform.forward = cb.linePos.forward;
-    }
-
 }
