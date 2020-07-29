@@ -9,22 +9,22 @@ public class Teleporting : MonoBehaviour
 
     public void OnControllerColliderHit(ControllerColliderHit col)
     {
-        if (col.gameObject.tag == "Teleport")
+
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        print("12345");
+        if (col.gameObject.tag == "Player")
         {
             print(gameObject.name + "텔레포팅!!");
-            transform.position = teleportTarget.transform.position;
+            CharacterController cc = col.GetComponent<CharacterController>();
+            cc.enabled = false;
+            cc.transform.position = col.transform.position = teleportTarget.transform.position;
+            cc.enabled = true;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
     // 이 스크립트는 플레이어에 붙어있음.
     // 원래는 teleportStartPoint에 스크립트를 붙여, 플레이어가 닿으면 순간이동이 되게 하려고 했으나,
     // 플레이어 자체가 cc로 되있어서 그런지, OnCollisionEnter나 OnTriggerEnter를 사용해서 플레이어와 닿게 하려고 했으나,
