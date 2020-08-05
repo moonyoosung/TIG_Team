@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cakeslice;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class MYS_PlayerClick : MonoBehaviour
     public MYS_KeypadNumber kn;
     MYS_CamRotate cm;
     bool grapItem;
+    OutlineEffect cmOutLine;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class MYS_PlayerClick : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
+        cmOutLine = Camera.main.transform.GetComponent<OutlineEffect>();
     }
 
     void Update()
@@ -36,6 +39,18 @@ public class MYS_PlayerClick : MonoBehaviour
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*10f, Color.blue, 3f);
 
         RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+            {
+                cmOutLine.enabled = true;
+            }
+            else
+            {
+                cmOutLine.enabled = false;
+            }
+        }
+
         // 왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButtonDown(0))
         {
