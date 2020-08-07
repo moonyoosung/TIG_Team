@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 88402824684977126}
   - component: {fileID: 88402824684977120}
   - component: {fileID: 88402824684977127}
-  - component: {fileID: 4539236241541610298}
+  - component: {fileID: 1654977887}
   m_Layer: 10
   m_Name: Box
   m_TagString: Untagged
@@ -136,7 +136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88402824684977125}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.23, y: 1.11, z: 0.749}
   m_LocalScale: {x: 0.997136, y: 0.026709, z: 0.65437037}
   m_Children:
@@ -177,7 +177,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4539236241541610298
+--- !u!114 &1654977887
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,10 +186,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 88402824684977125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0db59f11707a04090268c0e46d4235, type: 3}
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxoutlines:
+  lines:
   - {fileID: 88402825093461103}
   - {fileID: 88402824427305901}
   - {fileID: 88402825945703851}

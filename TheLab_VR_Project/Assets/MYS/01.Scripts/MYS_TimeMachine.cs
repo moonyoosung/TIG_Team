@@ -19,6 +19,7 @@ public class MYS_TimeMachine : MonoBehaviour
     public GameObject led;
     public GameObject button;
     public Vector3 btOrizinPos;
+    Vector3 orizinPos;
     //현재시간
     float currentTime = 0;
     //맵인덱스
@@ -55,17 +56,38 @@ public class MYS_TimeMachine : MonoBehaviour
             mapIdx = 3;
         }
     }
-    //타임머신이 작동되면 플레이어를 자식으로 넣고 흔들리다가 이동한다.
 
     private void TMMove()
     {
         currentTime += Time.deltaTime;
+        //타임머신이 작동되면 플레이어를 자식으로 넣고 흔들리다가 이동한다.
         if (currentTime > moveTime)
         {
             state = TMState.Idle;
             currentTime = 0;
+            transform.position = orizinPos;
             MoveToMap();
         }
+    }
+    public float shakeSize = 0.1f;
+    public IEnumerator ShakeTimeMachineActive()
+    {
+        Vector3 localPos = transform.position;
+        // - 현재시간
+        float shakeTime = 0f;
+        while (shakeTime <= moveTime-0.1f)
+        {
+            shakeTime += Time.deltaTime;
+            // 3축
+            float x = UnityEngine.Random.Range(-1f, 1f) * shakeSize;
+            float y = UnityEngine.Random.Range(-1f, 1f) * shakeSize;
+            float z = UnityEngine.Random.Range(-1f, 1f) * shakeSize;
+
+            transform.position = localPos + new Vector3(x, y, z);
+            yield return null;
+        }
+        // 제자리로
+        //transform.position = localPos;
     }
 
     //타임머신이 몇번재 맵의 TMPOS로 이동할지 결정해주는 함수
@@ -76,6 +98,7 @@ public class MYS_TimeMachine : MonoBehaviour
         //플레이어를 가져간다.
         player.GetComponent<CharacterController>().enabled = false;
         transform.position = TMPos[mapIdx].position;
+        orizinPos = transform.position;
         player.GetComponent<CharacterController>().enabled = true;
 
         if (MYS_Inventory.Instance.inven.Contains(MYS_Clock.Instance.gameObject))

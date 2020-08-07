@@ -26,8 +26,8 @@ public class MYS_PlayerClick : MonoBehaviour
     void Start()
     {
         TM = GameObject.FindGameObjectWithTag("TM").GetComponent<MYS_TimeMachine>();
-        //Cursor.lockState = CursorLockMode.Confined;
-        //Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
         outline = Camera.main.transform.GetComponent<OutlineEffect>();
     }
@@ -117,28 +117,29 @@ public class MYS_PlayerClick : MonoBehaviour
     {
         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
         {
-            if (hit.transform.gameObject.name.Contains("ke") || hit.transform.gameObject.name.Contains("Box"))
-            {
-                Component[] lines;
-                lines = hit.transform.GetComponentsInChildren(typeof(cakeslice.Outline));
-                foreach (cakeslice.Outline outline in lines)
-                {
-                    outline.eraseRenderer = false;
-                }
-            }
-            else
-            {
-                hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
-            }
+            hit.transform.GetComponent<MYS_Outline>().outlineState = true;
+            hit.transform.GetComponent<MYS_Outline>().currentTime = 0f;
+            //if(hit.transform.gameObject.tag == "Possesion")
+            //{
+            //    hit.transform.GetComponent<MYS_FuelOutline>().outlineState = true;
+            //}
+            //Component[] lines;
+            //lines = hit.transform.GetComponentsInChildren(typeof(cakeslice.Outline));
+            //foreach (cakeslice.Outline outline in lines)
+            //{
+            //    outline.eraseRenderer = false;
+            //}
         }
         else if (hit.transform.gameObject.tag == "Keypad" || hit.transform.gameObject.tag == "Enter")
         {
-            hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
+            hit.transform.GetComponent<MYS_Outline>().outlineState = true;
+            hit.transform.GetComponent<MYS_Outline>().currentTime = 0f;
         }
         else if (hit.transform.gameObject.name.Contains("Button"))
         {
-            hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
-        }
+            hit.transform.GetComponent<MYS_Outline>().outlineState = true;
+            hit.transform.GetComponent<MYS_Outline>().currentTime = 0f;
+        }        
     }
 
     private void OnClickCabinet(RaycastHit hit)
