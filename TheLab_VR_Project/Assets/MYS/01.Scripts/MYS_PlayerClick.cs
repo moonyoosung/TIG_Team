@@ -1,4 +1,5 @@
-﻿using System;
+﻿using cakeslice;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,25 +20,33 @@ public class MYS_PlayerClick : MonoBehaviour
     MYS_TimeMachine TM;
     public MYS_KeypadNumber kn;
     MYS_CamRotate cm;
+    OutlineEffect outline;
     bool grapItem;
 
     void Start()
     {
         TM = GameObject.FindGameObjectWithTag("TM").GetComponent<MYS_TimeMachine>();
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
+        outline = Camera.main.transform.GetComponent<OutlineEffect>();
     }
 
     void Update()
     {
 
-        Ray ray = new Ray(Camera.main.transform.position ,Camera.main.transform.forward);
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*10f, Color.blue, 3f);
 
         RaycastHit hit = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            OutLineActiveControl(hit);
+
+        }
         // 왼쪽 마우스 버튼을 눌렀을 때
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !grapItem)
         {
             // 레이를 쏴서 부딪힌 녀석이 있다면
             if (Physics.Raycast(ray, out hit))
@@ -83,6 +92,8 @@ public class MYS_PlayerClick : MonoBehaviour
         {
             // 잡고 있는 물건의 중력값을 켜준다.
             PutDownGrapObj();
+            grapItem = false;
+
         }
         if (grapItem)
         {
@@ -99,6 +110,34 @@ public class MYS_PlayerClick : MonoBehaviour
                 cm.enabled = true;
                 grapObj.transform.GetComponent<ItemRotate>().enabled = false;
             }
+        }
+    }
+
+    private void OutLineActiveControl(RaycastHit hit)
+    {
+        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+        {
+            if (hit.transform.gameObject.name.Contains("ke") || hit.transform.gameObject.name.Contains("Box"))
+            {
+                Component[] lines;
+                lines = hit.transform.GetComponentsInChildren(typeof(cakeslice.Outline));
+                foreach (cakeslice.Outline outline in lines)
+                {
+                    outline.eraseRenderer = false;
+                }
+            }
+            else
+            {
+                hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
+            }
+        }
+        else if (hit.transform.gameObject.tag == "Keypad" || hit.transform.gameObject.tag == "Enter")
+        {
+            hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
+        }
+        else if (hit.transform.gameObject.name.Contains("Button"))
+        {
+            hit.transform.GetComponent<cakeslice.Outline>().eraseRenderer = false;
         }
     }
 
@@ -144,7 +183,6 @@ public class MYS_PlayerClick : MonoBehaviour
     {
         if (grapObj)
         {
-            grapItem = false;
             grapObj.GetComponent<Rigidbody>().useGravity = true;
             grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;

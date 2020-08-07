@@ -7,28 +7,28 @@ using UnityEngine;
 public class CheckBlocks : MonoBehaviour
 {
     // 블럭의 모양
-    public bool[] shape1 =
+    int[] shape1 =
     {
-        true, true, true,
-        false, false, false,
-        false, false, false,
+        1, 1, 1,
+        0, 0, 0,
+        0, 0, 0,
     };
-    public bool[] shape2 =
+    int[] shape2 =
     {
-        false, false, false,
-        true, false, false,
-        true, false, false,
+        0, 0, 0,
+        1, 0, 0,
+        1, 0, 0,
     };
-    public bool[] shape3 =
+    int[] shape3 =
     {
-        false, false, false,
-        false, true, true,
-        false, true, true,
+        0, 0, 0,
+        0, 1, 1,
+        0, 1, 1,
     };
     // 블럭의 수
     public bool[] shapeCount = new bool[3];
     // 검사할 배열
-    bool[] checker;
+    int[] checker;
     // 퍼즐 성공 여부
     public bool result;
 
@@ -41,13 +41,13 @@ public class CheckBlocks : MonoBehaviour
     public GameObject fuel;
     void Start()
     {
-        checker = new bool[shape1.Length];
+        checker = new int[shape1.Length];
     }
 
-    public void Check(int index, bool v)
+    public void Check(int index, int v)
     {
         checker[index] = v;
-        print(index + ", " + v);
+        //print(index + ", " + v);
     }
 
     // Update is called once per frame
@@ -68,58 +68,67 @@ public class CheckBlocks : MonoBehaviour
 
     public void AllCheck()
     {
-        if (!shapeCount[0])
+        print("퍼즐 체크 시작");
+        for (int i = 0; i < checker.Length; i++)
         {
-            // 배열 모두 검사하여 
-            for (int i = 0; i < checker.Length; i++)
-            {
-                // 각배열의 값이 shape1과 같으면
-                if (checker[i] == shape1[i])
-                {
-                    shapeCount[0] = true;
-                }
-                else
-                {
-                    shapeCount[0] = false;
-                }
+            print(i + "인자 값 : " + checker[i]);
+        }
+        for (int i = 0; i < shape1.Length; i++)
+        {
+            print(i + "모양 인자 값 : " + shape1[i]);
+        }
 
+        if(shapeCount[0] == false) { 
+        // 배열 모두 검사하여 
+        for (int i = 0; i < checker.Length; i++)
+        {
+
+            // 각배열의 값이 shape1과 같으면
+            if (checker[i] == shape1[i])
+            {
+                shapeCount[0] = true;
+            }
+            else
+            {
+                shapeCount[0] = false;
+                print(i+ "번째가 다릅니다.");
+
+                break;
             }
         }
-        if (!shapeCount[1])
+        }
+        if (shapeCount[1] == false)
         {
 
             // 배열 모두 검사하여
             for (int i = 0; i < checker.Length; i++)
             {
-                // 각배열의 값이 shape1과 같으면
-                if (checker[i] == shape2[i])
-                {
-                    shapeCount[1] = true;
-                }
-                else
+                shapeCount[1] = true;
+
+                // 각배열의 값이 shape2과 같으면
+                if (checker[i] != shape2[i])
                 {
                     shapeCount[1] = false;
+                    break;
                 }
-
             }
         }
-        if (!shapeCount[2])
+        if (shapeCount[2] == false)
         {
             // 배열 모두 검사하여
             for (int i = 0; i < checker.Length; i++)
             {
-                // 각배열의 값이 shape1과 같으면
-                if (checker[i] == shape3[i])
-                {
-                    shapeCount[2] = true;
-                }
-                else
+                shapeCount[2] = true;
+
+                // 각배열의 값이 shape3과 같으면
+                if (checker[i] != shape3[i])
                 {
                     shapeCount[2] = false;
+                    break;
                 }
-
             }
         }
+
         // 모양이 모두 true 면
         for (int i = 0; i < shapeCount.Length; i++)
         {
@@ -131,14 +140,15 @@ public class CheckBlocks : MonoBehaviour
             {
                 result = true;
             }
-            
         }
-        //print("검사");
 
-        for (int i = 0; i < checker.Length; i++)
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Block")
         {
-            checker[i] = false;
+            print("나는 퍼즐판입니다.");
         }
-
     }
 }

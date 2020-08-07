@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7013515439213615191}
   - component: {fileID: 7013515439213615192}
   - component: {fileID: 8504918838962427709}
+  - component: {fileID: 7013515437481010564}
+  - component: {fileID: 916489653}
   m_Layer: 10
   m_Name: Fuel
   m_TagString: Possesion
@@ -137,3 +139,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 200
+--- !u!114 &7013515437481010564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013515439213615190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 0
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
+--- !u!114 &916489653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013515439213615190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineState: 0
