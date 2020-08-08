@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CheckBlocks : MonoBehaviour
 {
+    public Animation fuelBox;
     // 블럭의 모양
     int[] shape1 =
     {
@@ -66,7 +67,7 @@ public class CheckBlocks : MonoBehaviour
             if (count < 1)
             {
                 count++;
-                GameObject createFuel = Instantiate(fuel, transform.position, transform.rotation);
+                fuelBox.Play();
             }
             print("퍼즐성공");
             result = false;

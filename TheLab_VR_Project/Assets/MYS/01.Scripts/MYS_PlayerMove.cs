@@ -10,6 +10,7 @@ public class MYS_PlayerMove : MonoBehaviour
     public float jumpPower = 1f;
     float yVelocity;
     CharacterController cc;
+    int jumpCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +26,19 @@ public class MYS_PlayerMove : MonoBehaviour
         Vector3 dir = new Vector3(h, 0, v);
         dir= Camera.main.transform.TransformDirection(dir);
         yVelocity += gravity * Time.deltaTime;
-        dir.y = yVelocity;
         transform.forward = Camera.main.transform.forward;
 
         if(cc.collisionFlags == CollisionFlags.Below)
         {
             yVelocity = 0;
+            jumpCount = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&&jumpCount ==0)
         {
             yVelocity = jumpPower;
+            jumpCount++;
         }
+        dir.y = yVelocity;
 
         cc.Move(dir * speed * Time.deltaTime);
     }

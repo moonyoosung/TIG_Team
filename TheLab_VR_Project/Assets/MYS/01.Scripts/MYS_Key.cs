@@ -21,7 +21,7 @@ public class MYS_Key : MonoBehaviour
 
             // 키돌아가는 애니메이션
             iTween.MoveTo(gameObject, iTween.Hash(
-                "position", other.transform.position + new Vector3(0.2f, 0, 0),
+                "position", other.transform.position ,
                 "speed", 1,
                 "easetype", iTween.EaseType.linear,
                 "oncompletetarget", gameObject,

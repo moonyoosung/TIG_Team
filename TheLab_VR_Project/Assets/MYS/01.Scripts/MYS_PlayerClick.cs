@@ -70,14 +70,21 @@ public class MYS_PlayerClick : MonoBehaviour
                 {
                     //열쇠를 grappoint로 옮긴다.
                     hit.transform.position = grapPoint.position;
-                    //열쇠의 중력값을 꺼준다.
-                    hit.transform.GetComponent<Rigidbody>().useGravity = false;
-                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    if (hit.transform.GetComponent<Rigidbody>())
+                    {
+                        //열쇠의 중력값을 꺼준다.
+                        hit.transform.GetComponent<Rigidbody>().useGravity = false;
+                        hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    }
 
                     //잡은 오브젝트 정보 저장
                     GrapingObj(hit.transform.gameObject);
 
                     if (hit.transform.gameObject.tag == "Possesion")
+                    {
+                        //인벤토리에 저장
+                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                    }else if(hit.transform.gameObject.tag == "Book")
                     {
                         //인벤토리에 저장
                         MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
@@ -91,9 +98,15 @@ public class MYS_PlayerClick : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && grapItem)
         {
             // 잡고 있는 물건의 중력값을 켜준다.
-            PutDownGrapObj();
+            if (grapObj.tag.Contains("Book"))
+            {
+                grapObj.SetActive(false);
+            }
+            else
+            {
+                PutDownGrapObj();
+            }
             grapItem = false;
-
         }
         if (grapItem)
         {
@@ -139,7 +152,7 @@ public class MYS_PlayerClick : MonoBehaviour
         {
             hit.transform.GetComponent<MYS_Outline>().outlineState = true;
             hit.transform.GetComponent<MYS_Outline>().currentTime = 0f;
-        }        
+        }
     }
 
     private void OnClickCabinet(RaycastHit hit)
@@ -213,47 +226,51 @@ public class MYS_PlayerClick : MonoBehaviour
             //print(hit.transform.position);
             //녀석의 이름을 가져와서 Password에 넣는다.
             string[] divisionName = hit.transform.gameObject.name.Split('_');
+            password[idx] = divisionName[1];
+            //KeypadNumber의 이미지를 바꾸어준다.
+            kn.ChangeKeypadNum(int.Parse(password[idx]), idx);
+            idx++;
             //idx예외처리
-            if (idx >= 4)
+            if (idx == 4)
             {
-                print("확인을 눌러주세요");
-            }
-            else
-            {
-                password[idx] = divisionName[1];
-                //KeypadNumber의 이미지를 바꾸어준다.
-                kn.ChangeKeypadNum(int.Parse(password[idx]), idx);
-                idx++;
-            }
-        }
-        else if (hit.transform.gameObject.tag == "Enter")
-        {
-            int count = 0;
-            //정답 패스워드와 비교하여 정답or오답을 출력한다.
-            for (int i = 0; i < answerPW.Length; i++)
-            {
-                //만약 정답과 입력 숫자가 다르면
-                if (answerPW[i] != int.Parse(password[i]))
+                int count = 0;
+                //정답 패스워드와 비교하여 정답or오답을 출력한다.
+                for (int i = 0; i < answerPW.Length; i++)
                 {
-                    print("오답입니다.");
+                    //만약 정답과 입력 숫자가 다르면
+                    if (answerPW[i] != int.Parse(password[i]))
+                    {
+                        print("오답입니다.");
+                        idx = 0;
+                        kn.ReSetKeypadNum();
+                        break;
+                    }
+                    else
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == 4)
+                {
+                    MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Open;
+                    print("정답입니다.");
                     idx = 0;
                     kn.ReSetKeypadNum();
-                    break;
                 }
-                else
-                {
-                    count++;
-                }
-
             }
-            if (count == 4)
-            {
-                MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Open;
-                print("정답입니다.");
-                idx = 0;
-                kn.ReSetKeypadNum();
-            }
+            //else
+            //{
+            //    password[idx] = divisionName[1];
+            //    //KeypadNumber의 이미지를 바꾸어준다.
+            //    kn.ChangeKeypadNum(int.Parse(password[idx]), idx);
+            //    idx++;
+            //}
         }
+        //else if (hit.transform.gameObject.tag == "Enter")
+        //{
+
+        //}
     }
 
     public void InitPassWord()
