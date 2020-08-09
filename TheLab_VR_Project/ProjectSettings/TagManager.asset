@@ -15,6 +15,8 @@ TagManager:
   - Block
   - PuzzleIndex
   - Book
+  - PosPuzzle
+  - Doll
   layers:
   - Default
   - TransparentFX

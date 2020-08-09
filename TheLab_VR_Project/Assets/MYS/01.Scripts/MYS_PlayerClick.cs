@@ -201,10 +201,10 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;
         }
-        if (grapObj.tag.Contains("Block"))
-        {
-            grapObj.GetComponent<Rigidbody>().useGravity = false;
-        }
+        //if (grapObj.tag.Contains("Block"))
+        //{
+        //    grapObj.GetComponent<Rigidbody>().useGravity = false;
+        //}
     }
 
     private void GrapingObj(GameObject obj)
