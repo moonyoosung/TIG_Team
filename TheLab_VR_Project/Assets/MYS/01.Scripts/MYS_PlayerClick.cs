@@ -57,6 +57,12 @@ public class MYS_PlayerClick : MonoBehaviour
                 OnClickButton(hit);
                 //캐비넷제어 함수
                 OnClickCabinet(hit);
+
+                if (hit.transform.gameObject.tag == "Lever")
+                {
+                    print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
+                    hit.transform.GetComponentInParent<MYS_Lever>().OnCheckLever();
+                }
             }
         }
         //왼쪽 마우스 버튼을 눌렀을 때
@@ -201,10 +207,10 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;
         }
-        //if (grapObj.tag.Contains("Block"))
-        //{
-        //    grapObj.GetComponent<Rigidbody>().useGravity = false;
-        //}
+        if (grapObj != null && grapObj.tag.Contains("Block"))
+        {
+            grapObj.GetComponent<Rigidbody>().useGravity = false;
+        }
     }
 
     private void GrapingObj(GameObject obj)

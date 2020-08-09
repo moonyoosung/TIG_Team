@@ -30,7 +30,7 @@ public class MYS_TimeMachine : MonoBehaviour
     public bool fuel;
     //public GameObject number1clock;
     public GameObject water;
-
+    public MYS_TimePuzzle TP;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -75,7 +75,7 @@ public class MYS_TimeMachine : MonoBehaviour
         Vector3 localPos = transform.position;
         // - 현재시간
         float shakeTime = 0f;
-        while (shakeTime <= moveTime-0.1f)
+        while (shakeTime <= moveTime - 0.1f)
         {
             shakeTime += Time.deltaTime;
             // 3축
@@ -93,8 +93,16 @@ public class MYS_TimeMachine : MonoBehaviour
     //타임머신이 몇번재 맵의 TMPOS로 이동할지 결정해주는 함수
     private void MoveToMap()
     {
-        //이동할 맵을 변경하고
-        mapIdx++;
+        //만약 Time퍼즐을 맞추었다면 처음시점으로 돌아가고
+        if (TP.result)
+        {
+            mapIdx = 0;
+        }
+        else
+        {
+            //이동할 맵을 변경하고
+            mapIdx++;
+        }
         //플레이어를 가져간다.
         player.GetComponent<CharacterController>().enabled = false;
         transform.position = TMPos[mapIdx].position;
@@ -120,13 +128,14 @@ public class MYS_TimeMachine : MonoBehaviour
         PlayerChildIdent(false);
 
         //물차오르는 맵일때
-        if (mapIdx == 4)
+        if (mapIdx == 3)
         {
             WaterUp();
         }
         //물차오르는 다음맵
-        if (mapIdx == 5)
+        if (mapIdx == 4)
         {
+            water.SetActive(false);
             MYS_Water.Instace.waterInUI.SetActive(false);
         }
     }

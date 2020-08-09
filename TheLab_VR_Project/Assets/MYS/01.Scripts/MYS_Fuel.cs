@@ -16,6 +16,7 @@ public class MYS_Fuel : MonoBehaviour
         {
             //게임오브젝트의 레이어를 바꾼다.
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
+            transform.GetComponent<Rigidbody>().useGravity = false;
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             hit = other.gameObject;

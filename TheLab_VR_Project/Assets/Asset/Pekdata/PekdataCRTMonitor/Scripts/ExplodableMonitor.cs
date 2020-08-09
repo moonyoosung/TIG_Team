@@ -21,7 +21,7 @@ public class ExplodableMonitor : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision col){
-        if (!broken)
+        if (col.gameObject.layer == LayerMask.NameToLayer("Item")&&!broken)
         {
             broken = true;
             screenOff.SetActive(false);

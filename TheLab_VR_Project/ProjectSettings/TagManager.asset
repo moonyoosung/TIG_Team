@@ -17,6 +17,8 @@ TagManager:
   - Book
   - PosPuzzle
   - Doll
+  - Letter
+  - Lever
   layers:
   - Default
   - TransparentFX

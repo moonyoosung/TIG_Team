@@ -16,7 +16,7 @@ public class Pos_PuzzleIndex : MonoBehaviour
             pc.PutDownGrapObj();
             transform.position = other.transform.position;
             transform.up = other.transform.up;
-            print("인형"+other.gameObject.name);
+            //print("인형"+other.gameObject.name);
         }
     }
 }

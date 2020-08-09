@@ -28,7 +28,7 @@ public class CheckPuzzle : MonoBehaviour
     }
     public void CheckInit(int index, int value)
     {
-        print(index + "번째 값 : " + value);
+        //print(index + "번째 값 : " + value);
         check[index] = value;
         CheckAnswer();
     }

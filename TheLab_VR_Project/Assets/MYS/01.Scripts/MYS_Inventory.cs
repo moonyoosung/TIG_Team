@@ -5,6 +5,12 @@ using UnityEngine;
 public class MYS_Inventory : MonoBehaviour
 {
     public static MYS_Inventory Instance;
+    MYS_CamRotate cm;
+    private void Start()
+    {
+        cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
+
+    }
     private void Awake()
     {
         Instance = this;
@@ -36,7 +42,23 @@ public class MYS_Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            book.SetActive(!book.activeSelf);            
+            book.SetActive(!book.activeSelf);
+        }
+        if (book != null&& book.activeSelf)
+        {
+            //만약 키보드 왼쪽 Alt키를 누르면
+            if (Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                //카메라 회전을 멈추고 아이템을 회전시킨다.
+                cm.enabled = false;
+                book.transform.GetComponent<ItemRotate>().enabled = true;
+            }
+            if (Input.GetKeyUp(KeyCode.LeftAlt))
+            {
+                //아이템 회전을 멈추고 카메라를 회전시킨다.
+                cm.enabled = true;
+                book.transform.GetComponent<ItemRotate>().enabled = false;
+            }
         }
     }
 }
