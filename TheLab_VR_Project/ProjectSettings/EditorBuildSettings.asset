@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MYS_WorkScene.unity
     guid: f725c437bcc2054449f0ffe090eac790
+  - enabled: 1
+    path: Assets/ES/Scenes/Tardis.UI.unity
+    guid: 20110b72437ed1943bdc0ce448af54d4
   m_configObjects: {}
