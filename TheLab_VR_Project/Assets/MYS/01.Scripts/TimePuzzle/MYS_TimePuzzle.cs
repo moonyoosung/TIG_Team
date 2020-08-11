@@ -6,11 +6,11 @@ public class MYS_TimePuzzle : MonoBehaviour
 {
     public bool result;
     public bool[] answer = new bool[43];
-    public bool[] table;
+    public bool[] table = new bool[43];
 
     void Start()
     {
-        table = new bool[answer.Length];
+        //table = new bool[answer.Length];
     }
 
     void Update()
