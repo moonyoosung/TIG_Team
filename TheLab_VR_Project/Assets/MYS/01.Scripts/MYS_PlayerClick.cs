@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class MYS_PlayerClick : MonoBehaviour
 {
+    public Transform LeftHand;
+    public Transform RightHand;
+
     public Image pointer;
     // 비밀번호를 담을 변수
     string[] password = new string[4];
@@ -35,8 +38,8 @@ public class MYS_PlayerClick : MonoBehaviour
     void Update()
     {
 
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward*10f, Color.blue, 3f);
+        Ray ray = new Ray(LeftHand.position, LeftHand.forward* 20f);
+        Debug.DrawRay(LeftHand.position, LeftHand.forward * 20f, Color.blue, 3f);
 
         RaycastHit hit = new RaycastHit();
 
@@ -134,6 +137,7 @@ public class MYS_PlayerClick : MonoBehaviour
 
     private void OutLineActiveControl(RaycastHit hit)
     {
+
         if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
         {
             hit.transform.GetComponent<MYS_Outline>().outlineState = true;
