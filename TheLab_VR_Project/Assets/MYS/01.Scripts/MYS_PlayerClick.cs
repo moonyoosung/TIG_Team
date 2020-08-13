@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityScript.Steps;
 
 public class MYS_PlayerClick : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class MYS_PlayerClick : MonoBehaviour
 
     MYS_TimeMachine TM;
     public MYS_KeypadNumber kn;
+    public MYS_AlphaPad ap;
     MYS_CamRotate cm;
     OutlineEffect outline;
     bool grapItem;
@@ -38,7 +40,7 @@ public class MYS_PlayerClick : MonoBehaviour
     void Update()
     {
 
-        Ray ray = new Ray(LeftHand.position, LeftHand.forward* 20f);
+        Ray ray = new Ray(LeftHand.position, LeftHand.forward * 20f);
         Debug.DrawRay(LeftHand.position, LeftHand.forward * 20f, Color.blue, 3f);
 
         RaycastHit hit = new RaycastHit();
@@ -56,11 +58,16 @@ public class MYS_PlayerClick : MonoBehaviour
             {
                 //Keypad제어 함수
                 OnClickKeyPad(hit);
+                //Alphapad제어 함수
+                OnClickAlphaPad(hit);
                 //버튼클릭제어 함수
                 OnClickButton(hit);
                 //캐비넷제어 함수
                 OnClickCabinet(hit);
-
+                //티비 제어
+                OnClickTvButton(hit);
+                //퍼즐판 입력 함수
+                OnClickTransitionPuzzle(hit);
                 if (hit.transform.gameObject.tag == "Lever")
                 {
                     print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
@@ -93,7 +100,8 @@ public class MYS_PlayerClick : MonoBehaviour
                     {
                         //인벤토리에 저장
                         MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-                    }else if(hit.transform.gameObject.tag == "Book")
+                    }
+                    else if (hit.transform.gameObject.tag == "Book")
                     {
                         //인벤토리에 저장
                         MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
@@ -132,6 +140,45 @@ public class MYS_PlayerClick : MonoBehaviour
                 cm.enabled = true;
                 grapObj.transform.GetComponent<ItemRotate>().enabled = false;
             }
+        }
+    }
+
+    private void OnClickTransitionPuzzle(RaycastHit hit)
+    {
+        if (hit.transform.tag.Contains("TransitionPuzzle")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == false)
+        {
+            hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().MovePuzzlePlane();
+        }
+        else if(hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == true)
+        {
+            hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().ClosePuzzlePlane();
+
+        }
+        if (hit.transform.tag.Contains("PuzzleIndex")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
+        {
+            string[] idx = hit.transform.gameObject.name.Split('_');
+            print("오브젝트 번호 : " + idx[1]);
+            hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().FindNearIdx(int.Parse(idx[1]));
+        }
+    }
+
+    private void OnClickTvButton(RaycastHit hit)
+    {
+        if (hit.transform.gameObject.name.Contains("B_TV"))
+        {
+            hit.transform.GetComponent<MYS_TVButton>().TVButton();
+        }
+    }
+
+    private void OnClickAlphaPad(RaycastHit hit)
+    {
+        //만약 부딪힌 녀석의 태그에 AplhaPad가 있다면
+        if (hit.transform.gameObject.tag == "AlphaPad")
+        {
+            //녀석의 이름을 가져와서 index값을 던져준다.
+            string[] divisionName = hit.transform.gameObject.name.Split('_');
+
+            ap.OnClickPadNumber(int.Parse(divisionName[1]));
         }
     }
 

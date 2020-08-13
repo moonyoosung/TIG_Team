@@ -10,7 +10,7 @@ public class PuzzleTrans1 : MonoBehaviour
     {
         if (other.gameObject.tag == "Doll")
         {
-            print("퍼즐위치");
+            //print("퍼즐위치");
             // 배열 위치에 인덱스값 넘겨줘야함
             cp.CheckInit(index, other.gameObject.transform.GetComponent<Pos_PuzzleIndex>().value);
 

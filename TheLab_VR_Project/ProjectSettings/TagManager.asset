@@ -19,6 +19,8 @@ TagManager:
   - Doll
   - Letter
   - Lever
+  - AlphaPad
+  - TransitionPuzzle
   layers:
   - Default
   - TransparentFX

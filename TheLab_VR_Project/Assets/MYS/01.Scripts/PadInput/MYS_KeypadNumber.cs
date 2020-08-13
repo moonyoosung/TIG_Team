@@ -26,7 +26,7 @@ public class MYS_KeypadNumber : MonoBehaviour
     {
         for (int i = 0; i < keypadNum.Length; i++)
         {
-            keypadNum[i].sprite = numbers[0];
+            keypadNum[i].sprite = numbers[9];
         }
     }
 }
