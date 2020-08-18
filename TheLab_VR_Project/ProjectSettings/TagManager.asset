@@ -21,6 +21,7 @@ TagManager:
   - Lever
   - AlphaPad
   - TransitionPuzzle
+  - TransPuzzleIdx
   layers:
   - Default
   - TransparentFX

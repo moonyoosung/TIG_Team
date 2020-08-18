@@ -48,7 +48,6 @@ public class MYS_PlayerClick : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             OutLineActiveControl(hit);
-
         }
         // 왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButtonDown(0) && !grapItem)
@@ -73,6 +72,10 @@ public class MYS_PlayerClick : MonoBehaviour
                     print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
                     hit.transform.GetComponentInParent<MYS_Lever>().OnCheckLever();
                 }
+                if(hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+                {
+                    hit.transform.GetComponentInParent<MYS_WirteLetter>().writeOn = true;
+                }
             }
         }
         //왼쪽 마우스 버튼을 눌렀을 때
@@ -96,17 +99,20 @@ public class MYS_PlayerClick : MonoBehaviour
                     //잡은 오브젝트 정보 저장
                     GrapingObj(hit.transform.gameObject);
 
+                    #region"인벤토리 저장"
+                    //인벤토리에 저장
                     if (hit.transform.gameObject.tag == "Possesion")
                     {
-                        //인벤토리에 저장
                         MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
                     }
                     else if (hit.transform.gameObject.tag == "Book")
                     {
-                        //인벤토리에 저장
+                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                    }else if(hit.transform.gameObject.tag == "Letter")
+                    {
                         MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
                     }
-
+                    #endregion
                 }
             }
 
@@ -154,7 +160,7 @@ public class MYS_PlayerClick : MonoBehaviour
             hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().ClosePuzzlePlane();
 
         }
-        if (hit.transform.tag.Contains("PuzzleIndex")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
+        if (hit.transform.tag.Contains("TransPuzzleIdx")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
         {
             string[] idx = hit.transform.gameObject.name.Split('_');
             print("오브젝트 번호 : " + idx[1]);

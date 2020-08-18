@@ -103,6 +103,10 @@ public class MYS_TimeMachine : MonoBehaviour
             //이동할 맵을 변경하고
             mapIdx++;
         }
+        if (mapIdx > 6)
+        {
+            //플레이어 죽음
+        }
         //플레이어를 가져간다.
         player.GetComponent<CharacterController>().enabled = false;
         transform.position = TMPos[mapIdx].position;

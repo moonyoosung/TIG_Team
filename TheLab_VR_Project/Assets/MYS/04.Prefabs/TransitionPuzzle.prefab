@@ -1797,6 +1797,9 @@ MonoBehaviour:
   - {fileID: 3929488324601411718}
   - {fileID: 3929488324357953494}
   result: 0
+  moveState: 1
+  outPuzzleState: 0
+  shelves: {fileID: 0}
 --- !u!1 &2200317866020743030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2267,7 @@ GameObject:
   - component: {fileID: 3929488323344364749}
   m_Layer: 0
   m_Name: Puzzle_2
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2372,7 +2375,7 @@ GameObject:
   - component: {fileID: 3929488323344871172}
   m_Layer: 0
   m_Name: Puzzle_6
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2480,7 +2483,7 @@ GameObject:
   - component: {fileID: 3929488324251722649}
   m_Layer: 0
   m_Name: Puzzle_3
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2588,7 +2591,7 @@ GameObject:
   - component: {fileID: 3929488324357953489}
   m_Layer: 0
   m_Name: Puzzle_8
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2728,7 +2731,7 @@ GameObject:
   - component: {fileID: 3929488324571633605}
   m_Layer: 0
   m_Name: Puzzle_1
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2836,7 +2839,7 @@ GameObject:
   - component: {fileID: 3929488324601411713}
   m_Layer: 0
   m_Name: Puzzle_7
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2944,7 +2947,7 @@ GameObject:
   - component: {fileID: 3929488324606802066}
   m_Layer: 0
   m_Name: Puzzle_4
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3052,7 +3055,7 @@ GameObject:
   - component: {fileID: 3929488324946814306}
   m_Layer: 0
   m_Name: Puzzle_5
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3160,7 +3163,7 @@ GameObject:
   - component: {fileID: 3929488324994169242}
   m_Layer: 0
   m_Name: Puzzle_0
-  m_TagString: PuzzleIndex
+  m_TagString: TransPuzzleIdx
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

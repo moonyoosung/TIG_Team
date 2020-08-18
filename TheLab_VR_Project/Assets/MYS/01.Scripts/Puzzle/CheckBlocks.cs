@@ -67,6 +67,9 @@ public class CheckBlocks : MonoBehaviour
             if (count < 1)
             {
                 count++;
+                fuelBox.transform.GetComponentInChildren<BoxCollider>().enabled = false;
+                fuel.transform.GetComponent<BoxCollider>().enabled = true;
+                fuel.transform.GetComponent<Rigidbody>().useGravity = true;
                 fuelBox.Play();
             }
             print("퍼즐성공");
