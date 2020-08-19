@@ -36,92 +36,156 @@ public class MYS_PlayerClick : MonoBehaviour
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
         outline = Camera.main.transform.GetComponent<OutlineEffect>();
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(RightHand.position, 0.1f);
+        Gizmos.DrawWireSphere(LeftHand.position, 0.1f);
 
+    }
     void Update()
     {
 
-        Ray ray = new Ray(LeftHand.position, LeftHand.forward * 20f);
-        Debug.DrawRay(LeftHand.position, LeftHand.forward * 20f, Color.blue, 3f);
-
+#if EDITOR
+        //메인카메라에서 레이캐스트를 발사
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(ray, out hit))
+#elif VR
+        //컨트롤러에서 레이캐스트를 발사
+        Ray rRay = new Ray(RightHand.position, RightHand.forward * 20f);
+        //Ray lRay = new Ray(LeftHand.position, LeftHand.forward * 20f);
         RaycastHit hit = new RaycastHit();
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.SphereCast(rRay, 0.5f, out hit, 10f))
+#endif
         {
             OutLineActiveControl(hit);
         }
+
+#if EDITOR
         // 왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButtonDown(0) && !grapItem)
         {
-            // 레이를 쏴서 부딪힌 녀석이 있다면
+                    // 레이를 쏴서 부딪힌 녀석이 있다면
             if (Physics.Raycast(ray, out hit))
+            if (Physics.SphereCast(rRay, 0.5f, out hit, 10f) || Physics.SphereCast(lRay, 0.1f, out hit, 10f))
+#elif VR
+        // 컨트롤러 트리거 버튼을 눌렀을 때 
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+        {
+            Collider[] colls = Physics.OverlapSphere(RightHand.position, 0.1f);
+            if (colls.Length > 0)
+#endif
             {
-                //Keypad제어 함수
-                OnClickKeyPad(hit);
-                //Alphapad제어 함수
-                OnClickAlphaPad(hit);
-                //버튼클릭제어 함수
-                OnClickButton(hit);
-                //캐비넷제어 함수
-                OnClickCabinet(hit);
-                //티비 제어
-                OnClickTvButton(hit);
-                //퍼즐판 입력 함수
-                OnClickTransitionPuzzle(hit);
-                if (hit.transform.gameObject.tag == "Lever")
+#if VR
+                // 감지된 물체에 레이를 쏘고 앞방향으로도 레이를 쏜다.
+                if (Physics.Raycast(RightHand.position, colls[0].transform.position - RightHand.position, out hit) || Physics.SphereCast(rRay, 0.1f, out hit))
                 {
-                    print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
-                    hit.transform.GetComponentInParent<MYS_Lever>().OnCheckLever();
+#endif
+                    //Keypad제어 함수
+                    OnClickKeyPad(hit);
+                    //Alphapad제어 함수
+                    OnClickAlphaPad(hit);
+                    //버튼클릭제어 함수
+                    OnClickButton(hit);
+                    //캐비넷제어 함수
+                    OnClickCabinet(hit);
+                    //티비 제어
+                    OnClickTvButton(hit);
+                    //퍼즐판 입력 함수
+                    OnClickTransitionPuzzle(hit);
+                    if (hit.transform.gameObject.tag == "Lever")
+                    {
+                        print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
+                        hit.transform.GetComponentInParent<MYS_Lever>().OnCheckLever();
+                    }
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+                    {
+                        hit.transform.GetComponentInParent<MYS_WirteLetter>().writeOn = true;
+                    }
+#if VR
                 }
-                if(hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
-                {
-                    hit.transform.GetComponentInParent<MYS_WirteLetter>().writeOn = true;
-                }
+#endif
             }
         }
+
+#if EDITOR
         //왼쪽 마우스 버튼을 눌렀을 때
         if (Input.GetMouseButton(0))
         {
             if (Physics.Raycast(ray, out hit))
+#elif VR
+        //트리거 버튼이 눌리고 있을 때
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+        {
+            //만약 
+            Collider[] colls = Physics.OverlapSphere(RightHand.position, 0.1f);
+
+            if (colls.Length > 0)
+#endif
             {
-                Debug.DrawRay(Camera.main.transform.position, hit.point, Color.red, 3f);
-                //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+#if VR
+                if (Physics.Raycast(RightHand.position, colls[0].transform.position - RightHand.position, out hit))
                 {
-                    //열쇠를 grappoint로 옮긴다.
+#endif
+                    //레이를 쏴서 부딪힌 녀석의 레이어가 item이라면
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Item") && !grapItem)
+                    {
+                        //열쇠를 grappoint로 옮긴다.
+#if EDITOR
                     hit.transform.position = grapPoint.position;
-                    if (hit.transform.GetComponent<Rigidbody>())
-                    {
-                        //열쇠의 중력값을 꺼준다.
-                        hit.transform.GetComponent<Rigidbody>().useGravity = false;
-                        hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    }
+#elif VR
+                        //잡은 물체를 컨트롤러에 위치시킨다.
+                        ChooseController(hit);
+#endif
+                        if (hit.transform.GetComponent<Rigidbody>())
+                        {
+                            //열쇠의 중력값을 꺼준다.
+                            hit.transform.GetComponent<Rigidbody>().useGravity = false;
+                            hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                        }
 
-                    //잡은 오브젝트 정보 저장
-                    GrapingObj(hit.transform.gameObject);
+                        //잡은 오브젝트 정보 저장
+                        GrapingObj(hit.transform.gameObject);
 
-                    #region"인벤토리 저장"
-                    //인벤토리에 저장
-                    if (hit.transform.gameObject.tag == "Possesion")
-                    {
-                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                        #region"인벤토리 저장"
+                        //인벤토리에 저장
+                        if (hit.transform.gameObject.tag == "Possesion")
+                        {
+                            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                        }
+                        else if (hit.transform.gameObject.tag == "Book")
+                        {
+                            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                        }
+                        else if (hit.transform.gameObject.tag == "Letter")
+                        {
+                            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+                        }
+                        #endregion
                     }
-                    else if (hit.transform.gameObject.tag == "Book")
-                    {
-                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-                    }else if(hit.transform.gameObject.tag == "Letter")
-                    {
-                        MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-                    }
-                    #endregion
+#if VR
                 }
+#endif
             }
 
         }
+#if EDITOR
         //왼쪽 마우스 버튼이 떼지면
         if (Input.GetMouseButtonUp(0) && grapItem)
+
+#elif VR
+        //트리거 버튼을 눌렀을 때
+        if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
+#endif
         {
             // 잡고 있는 물건의 중력값을 켜준다.
-            if (grapObj.tag.Contains("Book"))
+            if (!grapObj)
+            {
+
+            }
+            else if (grapObj.tag.Contains("Book"))
             {
                 grapObj.SetActive(false);
             }
@@ -131,6 +195,7 @@ public class MYS_PlayerClick : MonoBehaviour
             }
             grapItem = false;
         }
+#if EDITOR
         if (grapItem)
         {
             //만약 키보드 왼쪽 Alt키를 누르면
@@ -147,20 +212,37 @@ public class MYS_PlayerClick : MonoBehaviour
                 grapObj.transform.GetComponent<ItemRotate>().enabled = false;
             }
         }
+#endif
+    }
+
+    private void ChooseController(RaycastHit hit)
+    {
+        // 만약 왼쪽이면 왼손에
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        {
+            hit.transform.position = LeftHand.transform.position;
+            hit.transform.parent = LeftHand;
+        }
+        // 오른쪽이면 오른손에
+        else if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+        {
+            hit.transform.position = RightHand.transform.position;
+            hit.transform.parent = RightHand;
+        }
     }
 
     private void OnClickTransitionPuzzle(RaycastHit hit)
     {
-        if (hit.transform.tag.Contains("TransitionPuzzle")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == false)
+        if (hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == false)
         {
             hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().MovePuzzlePlane();
         }
-        else if(hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == true)
+        else if (hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == true)
         {
             hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().ClosePuzzlePlane();
 
         }
-        if (hit.transform.tag.Contains("TransPuzzleIdx")&&hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
+        if (hit.transform.tag.Contains("TransPuzzleIdx") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
         {
             string[] idx = hit.transform.gameObject.name.Split('_');
             print("오브젝트 번호 : " + idx[1]);
@@ -277,7 +359,7 @@ public class MYS_PlayerClick : MonoBehaviour
             return;
         }
         grapItem = true;
-        obj.transform.parent = transform;
+        //obj.transform.parent = transform;
         grapObj = obj;
     }
 
