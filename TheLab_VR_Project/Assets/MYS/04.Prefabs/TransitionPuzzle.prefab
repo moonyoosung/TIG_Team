@@ -2265,6 +2265,8 @@ GameObject:
   - component: {fileID: 3929488323344364740}
   - component: {fileID: 3929488323344364739}
   - component: {fileID: 3929488323344364749}
+  - component: {fileID: 1715977519}
+  - component: {fileID: 1715977518}
   m_Layer: 0
   m_Name: Puzzle_2
   m_TagString: TransPuzzleIdx
@@ -2360,6 +2362,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &1715977519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488323344364738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1715977518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488323344364738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 1715977519}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488323344871173
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2409,8 @@ GameObject:
   - component: {fileID: 3929488323344871175}
   - component: {fileID: 3929488323344871174}
   - component: {fileID: 3929488323344871172}
+  - component: {fileID: 362254568}
+  - component: {fileID: 362254567}
   m_Layer: 0
   m_Name: Puzzle_6
   m_TagString: TransPuzzleIdx
@@ -2468,6 +2506,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &362254568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488323344871173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &362254567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488323344871173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 362254568}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324251722652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2553,8 @@ GameObject:
   - component: {fileID: 3929488324251722654}
   - component: {fileID: 3929488324251722653}
   - component: {fileID: 3929488324251722649}
+  - component: {fileID: 1324580669}
+  - component: {fileID: 1324580668}
   m_Layer: 0
   m_Name: Puzzle_3
   m_TagString: TransPuzzleIdx
@@ -2576,6 +2650,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &1324580669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324251722652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1324580668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324251722652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 1324580669}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324357953494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,6 +2697,8 @@ GameObject:
   - component: {fileID: 3929488324357953480}
   - component: {fileID: 3929488324357953495}
   - component: {fileID: 3929488324357953489}
+  - component: {fileID: 1152593684}
+  - component: {fileID: 1152593683}
   m_Layer: 0
   m_Name: Puzzle_8
   m_TagString: TransPuzzleIdx
@@ -2684,6 +2794,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &1152593684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324357953494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1152593683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324357953494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 1152593684}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324481748619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2873,8 @@ GameObject:
   - component: {fileID: 3929488324571633626}
   - component: {fileID: 3929488324571633625}
   - component: {fileID: 3929488324571633605}
+  - component: {fileID: 200956273}
+  - component: {fileID: 200956272}
   m_Layer: 0
   m_Name: Puzzle_1
   m_TagString: TransPuzzleIdx
@@ -2824,6 +2970,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &200956273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324571633624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &200956272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324571633624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 200956273}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324601411718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,6 +3017,8 @@ GameObject:
   - component: {fileID: 3929488324601411832}
   - component: {fileID: 3929488324601411719}
   - component: {fileID: 3929488324601411713}
+  - component: {fileID: 1569479623}
+  - component: {fileID: 1569479622}
   m_Layer: 0
   m_Name: Puzzle_7
   m_TagString: TransPuzzleIdx
@@ -2932,6 +3114,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 1
+--- !u!114 &1569479623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324601411718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1569479622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324601411718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 1569479623}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324606802067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,6 +3161,8 @@ GameObject:
   - component: {fileID: 3929488324606802069}
   - component: {fileID: 3929488324606802068}
   - component: {fileID: 3929488324606802066}
+  - component: {fileID: 1239673037}
+  - component: {fileID: 1239673036}
   m_Layer: 0
   m_Name: Puzzle_4
   m_TagString: TransPuzzleIdx
@@ -3040,6 +3258,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &1239673037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324606802067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &1239673036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324606802067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 1239673037}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324946814307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,6 +3305,8 @@ GameObject:
   - component: {fileID: 3929488324946814309}
   - component: {fileID: 3929488324946814308}
   - component: {fileID: 3929488324946814306}
+  - component: {fileID: 659357545}
+  - component: {fileID: 659357544}
   m_Layer: 0
   m_Name: Puzzle_5
   m_TagString: TransPuzzleIdx
@@ -3148,6 +3402,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &659357545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324946814307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &659357544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324946814307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 659357545}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &3929488324994169243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3449,8 @@ GameObject:
   - component: {fileID: 3929488324994169245}
   - component: {fileID: 3929488324994169244}
   - component: {fileID: 3929488324994169242}
+  - component: {fileID: 623469637}
+  - component: {fileID: 623469636}
   m_Layer: 0
   m_Name: Puzzle_0
   m_TagString: TransPuzzleIdx
@@ -3256,6 +3546,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceType: 0
+--- !u!114 &623469637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324994169243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.963, g: 1, b: 0.16509432, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &623469636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3929488324994169243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2990bab2e9205144b255572baeaef44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - {fileID: 623469637}
+  outlineState: 0
+  currentTime: 0
 --- !u!1 &7679774154435621056
 GameObject:
   m_ObjectHideFlags: 0
@@ -3270,7 +3594,7 @@ GameObject:
   - component: {fileID: 5761122702678543568}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: TransitionPuzzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

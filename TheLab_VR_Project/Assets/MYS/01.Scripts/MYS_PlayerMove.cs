@@ -99,10 +99,12 @@ public class MYS_PlayerMove : MonoBehaviour
             // 2. 가리키고 있는 방향에 지면에 이동 가능한지 여부를 체크한다.
             Ray LRay = new Ray(controllerPos[0].position, controllerPos[0].forward);
             RaycastHit hitInfo;
+            // 레이어부분
             int groundLayer = LayerMask.NameToLayer("Ground");
             int WallLayer = LayerMask.NameToLayer("Wall");
             int UILayer = LayerMask.NameToLayer("UI");
             int checkMask = 1 << groundLayer | 1 << UILayer;
+            // 텔레포트 마커방향설정
             Vector2 markerDir = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch);
             Vector3 dir = new Vector3(markerDir.x, 0, markerDir.y);
             dir = controllerPos[0].TransformDirection(dir);
@@ -114,7 +116,7 @@ public class MYS_PlayerMove : MonoBehaviour
                 telePortMarker.SetActive(true);
                 telePortMarker.transform.position = hitInfo.point + dir + hitInfo.normal * 0.1f;
 
-                Collider[] cols = Physics.OverlapCapsule(hitInfo.point, hitInfo.point + new Vector3(0, 2, 0), 0.1f, ~checkMask);
+                Collider[] cols = Physics.OverlapCapsule(hitInfo.point, hitInfo.point + new Vector3(0, 2, 0), 0.5f, ~checkMask);
                 if (cols.Length > 0)
                 {
                     markerMat.color = Color.red;
