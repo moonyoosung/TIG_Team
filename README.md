@@ -18,3 +18,10 @@ RTouch, SecondThumbStrick : 캐릭터 회전
 WASD : 플레이어 이동
 마우스 좌 클릭 : 오브젝트 잡기
 마우스 좌 클릭 + ALT 버튼 : 오브젝트 회전
+- 단축키 -
+R : Transitionpuzzle 자동완성
+Alpha3 :
+T : 타임머신 이동
+O : 타임머신 문열림
+C : 타임머신 문닫힘
+ 
