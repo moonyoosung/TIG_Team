@@ -43,6 +43,7 @@ public class MYS_Key : MonoBehaviour
     void OnCompleteKeyOpen()
     {
         transform.parent = hit.transform;
-        hit.transform.GetComponentInParent<MYS_Cabinet>().keyopen = true;        
+        hit.transform.GetComponentInParent<MYS_Cabinet>().keyopen = true;
+        Destroy(gameObject);
     }
 }

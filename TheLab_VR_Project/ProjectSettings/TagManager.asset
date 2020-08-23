@@ -19,6 +19,10 @@ TagManager:
   - Doll
   - Letter
   - Lever
+  - AlphaPad
+  - TransitionPuzzle
+  - TransPuzzleIdx
+  - WriteButton
   layers:
   - Default
   - TransparentFX
@@ -31,7 +35,7 @@ TagManager:
   - Key_In
   - Door
   - Item
-  - 
+  - Ground
   - 
   - 
   - 

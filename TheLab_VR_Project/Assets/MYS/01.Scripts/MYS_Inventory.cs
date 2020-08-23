@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using OVRTouchSample;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MYS_Inventory : MonoBehaviour
 {
     public static MYS_Inventory Instance;
+    public Transform[] handPos;
     MYS_CamRotate cm;
     private void Start()
     {
@@ -18,6 +20,9 @@ public class MYS_Inventory : MonoBehaviour
     //아이템을 넣을 List필요
     public List<GameObject> inven = new List<GameObject>();
     public GameObject book;
+    public GameObject Timecode;
+    public GameObject Letter;
+    public GameObject Letter_Doc;
     public void SaveItemToInven(GameObject item)
     {
         //만약 인벤토리에 해당 아이템이 없다면
@@ -28,6 +33,16 @@ public class MYS_Inventory : MonoBehaviour
             if (item.tag.Contains("Book"))
             {
                 book = item;
+            }else if (item.tag.Contains("Letter") && item.name.Contains("Letter"))
+            {
+                Letter = item;
+            }else if(item.tag.Contains("Letter") && item.name.Contains("TimeCode"))
+            {
+                Timecode = item;
+            }
+            else if (item.tag.Contains("Letter") && item.name.Contains("Letter_Doc"))
+            {
+                Letter_Doc = item;
             }
         }
     }
@@ -40,6 +55,7 @@ public class MYS_Inventory : MonoBehaviour
     }
     private void Update()
     {
+#if EDITOR
         if (Input.GetKeyDown(KeyCode.I))
         {
             book.SetActive(!book.activeSelf);
@@ -60,5 +76,24 @@ public class MYS_Inventory : MonoBehaviour
                 book.transform.GetComponent<ItemRotate>().enabled = false;
             }
         }
+#elif VR
+        if (OVRInput.GetDown(OVRInput.Button.One) && book)
+        {
+            book.SetActive(!book.activeSelf);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Two)&& Timecode)
+        {
+            Timecode.SetActive(!Timecode.activeSelf);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Three) && Letter_Doc)
+        {
+            Timecode.SetActive(!Timecode.activeSelf);
+        }
+        if (OVRInput.GetDown(OVRInput.Button.Four)&& Letter)
+        {
+            Letter.SetActive(!Letter.activeSelf);
+        }
+
+#endif
     }
 }

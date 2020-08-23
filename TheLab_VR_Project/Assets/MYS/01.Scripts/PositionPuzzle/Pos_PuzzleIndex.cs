@@ -12,7 +12,7 @@ public class Pos_PuzzleIndex : MonoBehaviour
     {
         if (other.gameObject.tag == "PosPuzzle")
         {            
-            MYS_Inventory.Instance.DeleteItemInven(gameObject);
+            //MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             transform.position = other.transform.position;
             transform.up = other.transform.up;
