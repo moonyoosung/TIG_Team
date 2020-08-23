@@ -34,6 +34,8 @@ public class MYS_TimeMachine : MonoBehaviour
     public MYS_TimePuzzle TP;
     public GameObject docLetter;
     public MYS_Timer timer;
+    public GameObject Decal;
+    public GameObject Decal2;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -115,6 +117,7 @@ public class MYS_TimeMachine : MonoBehaviour
         {
             timer.transform.gameObject.SetActive(true);
             timer.timerActive = true;
+            Decal.SetActive(false);
         }
         if (mapIdx > 6)
         {
@@ -160,6 +163,7 @@ public class MYS_TimeMachine : MonoBehaviour
         {
             water.SetActive(false);
             MYS_Water.Instace.waterInUI.SetActive(false);
+            Decal2.SetActive(true);
         }
     }
 

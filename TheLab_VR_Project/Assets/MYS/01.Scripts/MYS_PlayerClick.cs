@@ -327,6 +327,7 @@ public class MYS_PlayerClick : MonoBehaviour
             MYS_GameManager.Instance.StartUI.SetActive(false);
             UI.SetActive(false);
             MYS_SoundManager.Instance.OnPlayBGMSound();
+            TM.Decal.SetActive(true);
         }else if(hit.transform.tag == "RestartButton" && hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
         {
             SceneManager.LoadScene(0);
