@@ -11,7 +11,6 @@ public class CheckPuzzle : MonoBehaviour
     public int[] check = new int[3];
     public bool result;
     public Animation reward;
-    public GameObject letter;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +22,6 @@ public class CheckPuzzle : MonoBehaviour
     {
         if (result)
         {
-            reward.transform.GetComponentInChildren<BoxCollider>().enabled = false;
-            letter.transform.GetComponent<BoxCollider>().enabled = true;
-            letter.transform.GetComponent<Rigidbody>().useGravity = true;
             reward.Play();
             result = false;
         }
@@ -44,7 +40,6 @@ public class CheckPuzzle : MonoBehaviour
             if (answer[i] != check[i])
             {
                 result = false;
-                break;
             }
         }
     }

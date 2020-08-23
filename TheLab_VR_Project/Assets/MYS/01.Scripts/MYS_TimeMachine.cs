@@ -11,7 +11,7 @@ public class MYS_TimeMachine : MonoBehaviour
         Move
     }
     public TMState state;
-    public Transform playerPos;
+
     //필요속성 : 플레이어, 이동 위치
     GameObject player;
     public Transform[] TMPos;
@@ -45,12 +45,6 @@ public class MYS_TimeMachine : MonoBehaviour
         switch (state)
         {
             case TMState.Idle:
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    fuel = true;
-                    MYS_DoorFrame.Instance.TmMove = true;
-                    MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Close;
-                }
                 break;
             case TMState.Move:
                 TMMove();
@@ -109,19 +103,10 @@ public class MYS_TimeMachine : MonoBehaviour
             //이동할 맵을 변경하고
             mapIdx++;
         }
-        if (mapIdx > 6)
-        {
-            //플레이어 죽음
-        }
-
         //플레이어를 가져간다.
-        PlayerChildIdent(true);
-
         player.GetComponent<CharacterController>().enabled = false;
         transform.position = TMPos[mapIdx].position;
         orizinPos = transform.position;
-        //player.transform.localPosition = playerPos.position;
-
         player.GetComponent<CharacterController>().enabled = true;
 
         if (MYS_Inventory.Instance.inven.Contains(MYS_Clock.Instance.gameObject))
@@ -161,20 +146,20 @@ public class MYS_TimeMachine : MonoBehaviour
         if (id)
         {
             player.transform.parent = transform;
-            ////인벤토리의 아이템을 가져간다.
-            //for (int i = 0; i < MYS_Inventory.Instance.inven.Count; i++)
-            //{
-            //    MYS_Inventory.Instance.inven[i].transform.parent = transform;
-            //}
+            //인벤토리의 아이템을 가져간다.
+            for (int i = 0; i < MYS_Inventory.Instance.inven.Count; i++)
+            {
+                MYS_Inventory.Instance.inven[i].transform.parent = transform;
+            }
         }
         else
         {
             player.transform.parent = null;
             //인벤토리의 아이템을 가져간다.
-            //for (int i = 0; i < MYS_Inventory.Instance.inven.Count; i++)
-            //{
-            //    MYS_Inventory.Instance.inven[i].transform.parent = null;
-            //}
+            for (int i = 0; i < MYS_Inventory.Instance.inven.Count; i++)
+            {
+                MYS_Inventory.Instance.inven[i].transform.parent = null;
+            }
         }
     }
 

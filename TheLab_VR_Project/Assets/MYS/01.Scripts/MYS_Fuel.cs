@@ -17,7 +17,6 @@ public class MYS_Fuel : MonoBehaviour
             //게임오브젝트의 레이어를 바꾼다.
             transform.gameObject.layer = LayerMask.NameToLayer("Default");
             transform.GetComponent<Rigidbody>().useGravity = false;
-            transform.GetComponent<Rigidbody>().isKinematic = true;
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             hit = other.gameObject;
@@ -28,18 +27,26 @@ public class MYS_Fuel : MonoBehaviour
             // 연료 주입 애니메이션 실행
             iTween.MoveTo(gameObject, iTween.Hash(
             "position", hit.transform.position,
-            "speed", 0.1f,
+            "speed", 1,
             "easetype", iTween.EaseType.linear,
             "oncompletetarget", gameObject,
-            "oncomplete", "OnCompleteFuelInit"));
+            "oncomplete", "RotateFuel"));
         }
     }
-
+    void RotateFuel()
+    {
+        iTween.RotateTo(gameObject, iTween.Hash(
+        "rotation", new Vector3(90, 0, 0),
+        "speed", 30,
+        "easetype", iTween.EaseType.linear,
+                "oncompletetarget", gameObject,
+                "oncomplete", "OnCompleteFuelInit"));
+    }
     void OnCompleteFuelInit()
     {
         iTween.MoveTo(gameObject, iTween.Hash(
-        "position", transform.position +transform.up*0.3f,
-        "speed", 0.1f,
+        "position", transform.position +transform.up*2f,
+        "speed", 5,
         "easetype", iTween.EaseType.linear));
         GameObject TM = GameObject.FindGameObjectWithTag("TM");
         TM.GetComponent<MYS_TimeMachine>().fuel = true;

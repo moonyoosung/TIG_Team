@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using cakeslice;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,14 +32,15 @@ public class MYS_Outline : MonoBehaviour
         {
             if (outlineState)
             {
-                lines[i].OutlineWidth = 6f;
                 lines[i].enabled = true;
+                lines[i].eraseRenderer = false;
             }
             else
             {
+                lines[i].eraseRenderer = true;
                 lines[i].enabled = false;
             }
         }
-
+        
     }
 }
