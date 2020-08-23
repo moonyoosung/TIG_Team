@@ -12,10 +12,14 @@ public class MYS_Water : MonoBehaviour
     public GameObject waterInUI;
     private void Update()
     {
-        if (transform.localPosition.y >= -3.0f && transform.localPosition.y<=-2.5f)
+        if (transform.localPosition.y >= -1.5f )
         {
+#if EDITOR
             waterInUI.SetActive(true);
             transform.GetComponent<MeshRenderer>().enabled = false;
+#elif VR
+            MYS_GameManager.Instance.OnPlayerDieWater();
+#endif
         }    
     }
 }

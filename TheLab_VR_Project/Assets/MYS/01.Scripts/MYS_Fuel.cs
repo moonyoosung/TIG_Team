@@ -6,9 +6,20 @@ public class MYS_Fuel : MonoBehaviour
 {
     MYS_PlayerClick pc;
     GameObject hit;
+    AudioSource audioPlayer;
     private void Start()
     {
         pc = GameObject.FindGameObjectWithTag("Player").transform.GetComponent<MYS_PlayerClick>();
+        audioPlayer = GetComponent<AudioSource>();
+    }
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (audioPlayer.enabled)
+        {
+            audioPlayer.clip = MYS_SoundManager.Instance.SFX_FuelDown;
+            audioPlayer.volume = 0.05f;
+            audioPlayer.Play();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +35,8 @@ public class MYS_Fuel : MonoBehaviour
             transform.position = other.transform.position;
             transform.up = other.transform.forward;
 
-
+            audioPlayer.enabled = false;
+            MYS_SoundManager.Instance.OnPlayerFuelInSound();
             // 연료 주입 애니메이션 실행
             iTween.MoveTo(gameObject, iTween.Hash(
             "position", hit.transform.position,

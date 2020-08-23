@@ -25,7 +25,7 @@ public class MYS_TVButton : MonoBehaviour
     }
     public void TVButton()
     {
-
+        MYS_SoundManager.Instance.OnPlayerTVButton();
         iTween.MoveTo(gameObject, iTween.Hash(
         "position", transform.position + transform.forward * -0.01f,
         "speed", 0.5f,
