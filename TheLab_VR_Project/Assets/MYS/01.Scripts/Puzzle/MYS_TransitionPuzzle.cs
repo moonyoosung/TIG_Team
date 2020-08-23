@@ -25,6 +25,7 @@ public class MYS_TransitionPuzzle : MonoBehaviour
     public bool outPuzzleState;
 
     Vector3 orizinPos;
+    AudioSource audioPlayer;
 
     public MYS_MoveShelves shelves;
     void Start()
@@ -33,6 +34,7 @@ public class MYS_TransitionPuzzle : MonoBehaviour
         Shuffle();
         orizinPos = transform.position;
         moveState = true;
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     private void Shuffle()
@@ -92,6 +94,10 @@ public class MYS_TransitionPuzzle : MonoBehaviour
         //n번의 게임오브젝트가 빈공간이라면 이동한다.
         if (idx[number[n]].GetComponent<MYS_TPuzzleIndex>().spaceType == true)
         {
+            audioPlayer.clip = MYS_SoundManager.Instance.SFX_SlidePuzzle;
+            audioPlayer.volume = 0.3f;
+            audioPlayer.Play();
+
             //이동시킨다.
             float tempX = idx[number[n]].transform.position.x;
             float tempY = idx[number[n]].transform.position.y;
@@ -121,6 +127,10 @@ public class MYS_TransitionPuzzle : MonoBehaviour
     }
     public void MovePuzzlePlane()
     {
+        audioPlayer.clip = MYS_SoundManager.Instance.SFX_moveTransPuzzle;
+        audioPlayer.volume = 0.3f;
+        audioPlayer.Play();
+
         iTween.MoveTo(gameObject, iTween.Hash(
         "position", transform.position + transform.right*-1f,
         "speed", 0.5f,
@@ -130,6 +140,9 @@ public class MYS_TransitionPuzzle : MonoBehaviour
     }
     public void ClosePuzzlePlane()
     {
+        audioPlayer.clip = MYS_SoundManager.Instance.SFX_moveTransPuzzle;
+        audioPlayer.volume = 0.3f;
+        audioPlayer.Play();
         iTween.MoveTo(gameObject, iTween.Hash(
         "position", transform.position + transform.right * 1f,
         "speed", 0.5f,
@@ -144,6 +157,7 @@ public class MYS_TransitionPuzzle : MonoBehaviour
         {
             //책장을 움직인다.
             shelves.MoveBack();
+
         }
     }
     public void OnCompletePlane()

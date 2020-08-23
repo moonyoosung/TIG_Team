@@ -38,11 +38,14 @@ public class CheckBlocks : MonoBehaviour
     public Transform leftPos;
     public Transform rightPos;
     int count = 0;
+    AudioSource audioPlayer;
+    public AudioSource boxAudioPlayer;
     //보상
     public GameObject fuel;
     void Start()
     {
         checker = new int[shape1.Length];
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     public void Check(int index, int v)
@@ -71,6 +74,13 @@ public class CheckBlocks : MonoBehaviour
                 fuel.transform.GetComponent<BoxCollider>().enabled = true;
                 fuel.transform.GetComponent<Rigidbody>().useGravity = true;
                 fuelBox.Play();
+                boxAudioPlayer.clip = MYS_SoundManager.Instance.SFX_PuzzleOpen;
+                boxAudioPlayer.volume = 0.3f;
+                boxAudioPlayer.Play();
+
+                audioPlayer.clip = MYS_SoundManager.Instance.SFX_Succes;
+                audioPlayer.volume = 0.3f;
+                audioPlayer.Play();
             }
             print("퍼즐성공");
             result = false;

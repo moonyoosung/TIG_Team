@@ -68,6 +68,7 @@ public class MYS_Book : MonoBehaviour
 
     private void PageLeftControl()
     {
+        MYS_SoundManager.Instance.OnPlayerBookPage();
         //다음 페이지를 킨다.
         LeftPage[idx - 1].SetActive(true);
         RightPage[idx - 1].SetActive(true);
@@ -79,6 +80,8 @@ public class MYS_Book : MonoBehaviour
 
     public void PageRightControl()
     {
+        MYS_SoundManager.Instance.OnPlayerBookPage();
+
         //다음 페이지를 킨다.
         LeftPage[idx + 1].SetActive(true);
         RightPage[idx + 1].SetActive(true);
