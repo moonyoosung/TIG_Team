@@ -44,6 +44,7 @@ public class CheckPuzzle : MonoBehaviour
             if (answer[i] != check[i])
             {
                 result = false;
+                break;
             }
         }
     }

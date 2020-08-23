@@ -19,6 +19,8 @@ public class MYS_PlayerMove : MonoBehaviour
     public GameObject telePortMarker;
     public Transform[] controllerPos;
     Material markerMat;
+    Material markerMat2;
+    Material lineMat;
     bool movePossible;
     void Start()
     {
@@ -27,6 +29,8 @@ public class MYS_PlayerMove : MonoBehaviour
 #elif VR
 
         markerMat = telePortMarker.GetComponent<MeshRenderer>().material;
+        markerMat2 = telePortMarker.GetComponentInChildren<MeshRenderer>().material;
+        lineMat = telePortMarker.GetComponentInChildren<LineRenderer>().material;
         telePortMarker.SetActive(false);
 #endif
     }
@@ -60,6 +64,7 @@ public class MYS_PlayerMove : MonoBehaviour
         Teleport();
         // 플레이어 회전
         PlayerRotate();
+
 #endif
     }
 
@@ -94,7 +99,7 @@ public class MYS_PlayerMove : MonoBehaviour
     private void Teleport()
     {
         // 1. 만일 엄지버튼을 누르고 있는 상태라면...
-        if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch).magnitude != 0)
+        if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
         {
             // 2. 가리키고 있는 방향에 지면에 이동 가능한지 여부를 체크한다.
             Ray LRay = new Ray(controllerPos[0].position, controllerPos[0].forward);
@@ -110,7 +115,7 @@ public class MYS_PlayerMove : MonoBehaviour
             dir = controllerPos[0].TransformDirection(dir);
             dir.y = 0;
 
-            if (Physics.Raycast(LRay, out hitInfo, Mathf.Infinity, 1 << groundLayer))
+            if (Physics.Raycast(LRay, out hitInfo, Mathf.Infinity, 1<<groundLayer))
             {
                 // 2-1. 만일, 이동 불가능한 곳이면 마커를 붉은색으로 표시하고, 이동 가능한 곳이면 마커를 푸른색으로 표시하겠다.(overlapSphere)
                 telePortMarker.SetActive(true);
@@ -120,23 +125,31 @@ public class MYS_PlayerMove : MonoBehaviour
                 if (cols.Length > 0)
                 {
                     markerMat.color = Color.red;
+                    markerMat2.color = Color.red;
+                    lineMat.color = Color.red;
                     movePossible = false;
+                    //for (int i = 0; i < cols.Length; i++)
+                    //{
+                    //    print("접촉되는 오브젝트는 : " + cols[i].gameObject.name);
+                    //}
                 }
                 else
                 {
                     markerMat.color = Color.blue;
+                    markerMat2.color = Color.blue;
+                    lineMat.color = Color.blue;
                     movePossible = true;
                 }
             }
         }
 
         // 3. 만일, 마커가 푸른색일 때 누르고 있던 인덱스 트리거를 놓으면
-        if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, OVRInput.Controller.LTouch).magnitude == 0)
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
         {
             // 4. 만일, 이동 가능한 지역이었다면... 그 위치로 이동하겠다.
             if (movePossible)
             {
-                transform.position = telePortMarker.transform.position + new Vector3(0,transform.localScale.y,0);
+                transform.position = telePortMarker.transform.position + new Vector3(0,transform.localScale.y-0.2f,0);
             }
             // 5. 이동 불가능한 지역이엇다면 마커만 비활성화한다.
 

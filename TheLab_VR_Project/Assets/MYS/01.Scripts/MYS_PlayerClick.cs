@@ -15,6 +15,8 @@ public class MYS_PlayerClick : MonoBehaviour
     public Transform RightHand;
     public LineRenderer drawLine;
     public Image pointer;
+    public float torquePower = 2f;
+    public float throwPower = 2f;
     // 비밀번호를 담을 변수
     string[] password = new string[4];
     public int[] answerPW = { 6, 5, 4, 9 };
@@ -29,7 +31,7 @@ public class MYS_PlayerClick : MonoBehaviour
     public MYS_AlphaPad ap;
     MYS_CamRotate cm;
     bool grapItem;
-
+    public GameObject objectLine;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class MYS_PlayerClick : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
+        objectLine.SetActive(false);
     }
     private void OnDrawGizmos()
     {
@@ -171,7 +174,6 @@ public class MYS_PlayerClick : MonoBehaviour
         //트리거 버튼을 놓았을 때
         if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
         {
-
             //버튼이 놓아지면 한번 호출되는 함수
             OnButtonUp(hit);
         }
@@ -192,13 +194,42 @@ public class MYS_PlayerClick : MonoBehaviour
         }
         else if (grapObj.tag.Contains("Book"))
         {
+            grapObj.transform.parent = RightHand;
+            grapObj.transform.position = RightHand.position;
+            grapObj.transform.forward = RightHand.forward;
             grapObj.SetActive(false);
+            Destroy(GameObject.Find("hitPos"));
+        }
+        else if (grapObj.tag.Contains("Letter") && grapObj.name.Contains("Letter"))
+        {
+            grapObj.transform.parent = LeftHand;
+            grapObj.transform.position = LeftHand.position;
+            grapObj.transform.forward = LeftHand.forward;
+            grapObj.SetActive(false);
+            Destroy(GameObject.Find("hitPos"));
+        }
+        else if (grapObj.tag.Contains("Letter") && grapObj.name.Contains("TimeCode"))
+        {
+            grapObj.transform.parent = RightHand;
+            grapObj.transform.position = RightHand.position;
+            grapObj.transform.forward = RightHand.forward;
+            grapObj.SetActive(false);
+            Destroy(GameObject.Find("hitPos"));
+        }
+        else if (grapObj.tag.Contains("Letter") && grapObj.name.Contains("Letter_Doc"))
+        {
+            grapObj.transform.parent = LeftHand;
+            grapObj.transform.position = LeftHand.position;
+            grapObj.transform.forward = LeftHand.forward;
+            grapObj.SetActive(false);
+            Destroy(GameObject.Find("hitPos"));
         }
         else
-        {
+        {            
             PutDownGrapObj();
         }
         grapItem = false;
+        objectLine.SetActive(false);
     }
 
     private void OnButtonStayDown(RaycastHit hit)
@@ -222,22 +253,14 @@ public class MYS_PlayerClick : MonoBehaviour
 
             //잡은 오브젝트 정보 저장
             GrapingObj(hit.transform.gameObject);
-
-            #region"인벤토리 저장"
-            //인벤토리에 저장
-            if (hit.transform.gameObject.tag == "Possesion")
-            {
-                MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-            }
-            else if (hit.transform.gameObject.tag == "Book")
-            {
-                MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-            }
-            else if (hit.transform.gameObject.tag == "Letter")
-            {
-                MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
-            }
-            #endregion
+        }
+        else if (grapItem)
+        {
+            objectLine.SetActive(false);
+        }
+        else
+        {
+            objectLine.SetActive(true);
         }
     }
 
@@ -260,10 +283,25 @@ public class MYS_PlayerClick : MonoBehaviour
             print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
             hit.transform.GetComponentInParent<MYS_Lever>().OnCheckLever();
         }
-        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
+        if (hit.transform.gameObject.tag == "WriteButton")
         {
             hit.transform.GetComponentInParent<MYS_WirteLetter>().writeOn = true;
         }
+        #region"인벤토리 저장"
+        //인벤토리에 저장
+        if (hit.transform.gameObject.tag == "Possesion")
+        {
+            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+        }
+        else if (hit.transform.gameObject.tag == "Book")
+        {
+            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+        }
+        else if (hit.transform.gameObject.tag == "Letter")
+        {
+            MYS_Inventory.Instance.SaveItemToInven(hit.transform.gameObject);
+        }
+        #endregion
     }
 
     private void CheckHandObject()
@@ -273,8 +311,15 @@ public class MYS_PlayerClick : MonoBehaviour
 
     private void ChooseController(RaycastHit hit)
     {
-        hit.transform.position = RightHand.transform.position;
-        hit.transform.parent = RightHand;
+        // 레이캐스트 맞은 지점에 빈 게임오브젝트를 생성하고
+        GameObject hitPos = new GameObject("hitPos");
+        hitPos.transform.position = hit.point;
+        // 해당 게임오브젝트의 자식으로 넣는다.
+        hit.transform.parent = hitPos.transform;
+        hitPos.transform.position = RightHand.transform.position;
+        hitPos.transform.parent = RightHand.transform;
+        //hit.transform.position = RightHand.transform.position;
+        //hit.transform.parent = RightHand;
     }
 
     private void OnClickTransitionPuzzle(RaycastHit hit)
@@ -397,11 +442,20 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.GetComponent<Rigidbody>().useGravity = true;
             grapObj.GetComponent<Rigidbody>().isKinematic = false;
             grapObj.transform.parent = null;
+            if (!grapObj.tag.Contains("Block"))
+            {
+                Rigidbody rb = grapObj.GetComponent<Rigidbody>();
+                rb.AddRelativeTorque(OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch) * torquePower, ForceMode.VelocityChange);
+                rb.AddForce(OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * throwPower, ForceMode.VelocityChange);
+            }
+
         }
         if (grapObj != null && grapObj.tag.Contains("Block"))
         {
             grapObj.GetComponent<Rigidbody>().useGravity = false;
         }
+        Destroy(GameObject.Find("hitPos"));
+
     }
 
     private void GrapingObj(GameObject obj)

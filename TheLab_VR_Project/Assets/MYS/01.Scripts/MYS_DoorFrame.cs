@@ -62,7 +62,6 @@ public class MYS_DoorFrame : MonoBehaviour
                     if (TmMove)
                     {
                         // 타임머신에게 이동하라 알려준다.
-                        TM.GetComponent<MYS_TimeMachine>().PlayerChildIdent(true);
                         StartCoroutine(TM.GetComponent<MYS_TimeMachine>().ShakeTimeMachineActive());
                         TM.GetComponent<MYS_TimeMachine>().state = MYS_TimeMachine.TMState.Move;
                     }

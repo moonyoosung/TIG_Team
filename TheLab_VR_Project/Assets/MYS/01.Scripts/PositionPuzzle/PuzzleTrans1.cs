@@ -16,4 +16,14 @@ public class PuzzleTrans1 : MonoBehaviour
 
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Doll")
+        {
+            //print("퍼즐위치"+other.gameObject.name);
+            // 배열 위치에 인덱스값 넘겨줘야함
+            cp.CheckInit(0, 0);
+
+        }
+    }
 }

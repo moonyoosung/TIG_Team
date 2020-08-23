@@ -24,7 +24,7 @@ public class MYS_WirteLetter : MonoBehaviour
     {
         float dis = Vector3.Distance(player.transform.position, transform.position);
         // 플레이어와의 거리가 distance만큼 작아지면 버튼 오브젝트를 킨다.
-        if (dis < range && buttonActive == false)
+        if (dis < range)
         {
             writeButton.SetActive(true);
             buttonActive = true;

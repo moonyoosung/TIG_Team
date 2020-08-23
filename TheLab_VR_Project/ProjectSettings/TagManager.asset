@@ -22,6 +22,7 @@ TagManager:
   - AlphaPad
   - TransitionPuzzle
   - TransPuzzleIdx
+  - WriteButton
   layers:
   - Default
   - TransparentFX
