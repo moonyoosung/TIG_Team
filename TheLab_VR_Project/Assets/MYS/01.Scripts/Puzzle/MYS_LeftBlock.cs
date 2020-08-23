@@ -7,19 +7,11 @@ public class MYS_LeftBlock : MonoBehaviour
     public MYS_PlayerClick pc;
     public CheckBlocks cb;
     bool corutineState;
-    AudioSource audioPlayer;
-    private void Start()
-    {
-        audioPlayer = GetComponent<AudioSource>();
-    }
     // 블럭이 퍼즐판에 부딪히면
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PuzzlePlane")
         {
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_PuzzleBlock;
-            audioPlayer.volume = 0.01f;
-            audioPlayer.Play();
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             //transform.gameObject.layer = LayerMask.NameToLayer("Default");

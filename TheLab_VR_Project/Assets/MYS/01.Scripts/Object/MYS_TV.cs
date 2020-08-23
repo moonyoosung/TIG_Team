@@ -23,7 +23,6 @@ public class MYS_TV : MonoBehaviour
     }
     public void ControlTV()
     {
-
         flag = !flag;
         if (flag)
         {

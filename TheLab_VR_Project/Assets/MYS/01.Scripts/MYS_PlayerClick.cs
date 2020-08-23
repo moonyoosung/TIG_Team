@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityScript.Steps;
 
@@ -33,7 +32,7 @@ public class MYS_PlayerClick : MonoBehaviour
     MYS_CamRotate cm;
     bool grapItem;
     public GameObject objectLine;
-    public GameObject UI;
+
     void Start()
     {
         TM = GameObject.FindGameObjectWithTag("TM").GetComponent<MYS_TimeMachine>();
@@ -41,7 +40,6 @@ public class MYS_PlayerClick : MonoBehaviour
         Cursor.visible = false;
         cm = Camera.main.transform.GetComponent<MYS_CamRotate>();
         objectLine.SetActive(false);
-        MYS_SoundManager.Instance.OnPlayerStartSound();
     }
     private void OnDrawGizmos()
     {
@@ -84,7 +82,8 @@ public class MYS_PlayerClick : MonoBehaviour
             OutLineActiveControl(outlineHit);
         }
 
-
+        // 손가까이에 오브젝트들이 있는지 검사
+        CheckHandObject();
 
         // 컨트롤러 트리거 버튼을 눌렀을 때 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
@@ -225,16 +224,6 @@ public class MYS_PlayerClick : MonoBehaviour
             grapObj.SetActive(false);
             Destroy(GameObject.Find("hitPos"));
         }
-        else if (grapObj.tag.Contains("Possesion") )
-        {
-            grapObj.transform.parent = TM.transform;
-            grapObj.GetComponent<Rigidbody>().useGravity = true;
-            grapObj.GetComponent<Rigidbody>().isKinematic = false;
-            Rigidbody rb = grapObj.GetComponent<Rigidbody>();
-            //rb.AddRelativeTorque(OVRInput.GetLocalControllerAngularVelocity(OVRInput.Controller.RTouch) * torquePower, ForceMode.VelocityChange);
-            rb.AddRelativeForce(OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * throwPower, ForceMode.VelocityChange);
-            Destroy(GameObject.Find("hitPos"));
-        }
         else
         {            
             PutDownGrapObj();
@@ -289,8 +278,6 @@ public class MYS_PlayerClick : MonoBehaviour
         OnClickTvButton(hit);
         //퍼즐판 입력 함수
         OnClickTransitionPuzzle(hit);
-        // UI버튼 입력 감지 함수
-        OnClickUIButton(hit);
         if (hit.transform.gameObject.tag == "Lever")
         {
             print(hit.transform.GetComponentInParent<MYS_Lever>().gameObject.name);
@@ -317,20 +304,9 @@ public class MYS_PlayerClick : MonoBehaviour
         #endregion
     }
 
-    private void OnClickUIButton(RaycastHit hit)
+    private void CheckHandObject()
     {
-        if(hit.transform.tag=="StartButton"&&hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
-        {
-            //플레이어 제자리로이동
-            transform.position = new Vector3(0, 1, 0);
-            //UI비활성화
-            MYS_GameManager.Instance.StartUI.SetActive(false);
-            UI.SetActive(false);
-            MYS_SoundManager.Instance.OnPlayBGMSound();
-        }else if(hit.transform.tag == "RestartButton" && hit.transform.gameObject.layer == LayerMask.NameToLayer("UI"))
-        {
-            SceneManager.LoadScene(0);
-        }
+
     }
 
     private void ChooseController(RaycastHit hit)
@@ -351,11 +327,11 @@ public class MYS_PlayerClick : MonoBehaviour
         if (hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == false)
         {
             hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().MovePuzzlePlane();
-
         }
         else if (hit.transform.tag.Contains("TransitionPuzzle") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().outPuzzleState == true)
         {
             hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().ClosePuzzlePlane();
+
         }
         if (hit.transform.tag.Contains("TransPuzzleIdx") && hit.transform.GetComponentInParent<MYS_TransitionPuzzle>().moveState)
         {
@@ -437,7 +413,6 @@ public class MYS_PlayerClick : MonoBehaviour
         if (hit.transform.gameObject.name.Contains("Button"))
         {
             TM.btOrizinPos = hit.transform.position;
-            
             //버튼 애니메이션
             iTween.MoveTo(hit.transform.gameObject, iTween.Hash(
                 "position", hit.transform.position + hit.transform.up * -0.05f,
@@ -452,15 +427,9 @@ public class MYS_PlayerClick : MonoBehaviour
     {
         if (TM.fuel)
         {
-            MYS_SoundManager.Instance.OnPlayerTMActive();
             MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Close;
-            MYS_SoundManager.Instance.OnPlayerDoorSound();
             MYS_DoorFrame.Instance.TmMove = true;
             TM.led.GetComponent<Light>().color = Color.white;
-        }
-        else
-        {
-            MYS_SoundManager.Instance.OnPlayerTMActiveFail();
         }
 
         TM.ButtonReset();
@@ -505,7 +474,6 @@ public class MYS_PlayerClick : MonoBehaviour
         //만약 부딪힌 녀석의 이름에 Keypad가 있다면
         if (hit.transform.gameObject.tag == "Keypad")
         {
-            MYS_SoundManager.Instance.OnPlayerKeypadSound();
             //print(hit.transform.position);
             //녀석의 이름을 가져와서 Password에 넣는다.
             string[] divisionName = hit.transform.gameObject.name.Split('_');
@@ -523,7 +491,6 @@ public class MYS_PlayerClick : MonoBehaviour
                     //만약 정답과 입력 숫자가 다르면
                     if (answerPW[i] != int.Parse(password[i]))
                     {
-                        MYS_SoundManager.Instance.OnPlayerKeypadFail();
                         print("오답입니다.");
                         idx = 0;
                         kn.ReSetKeypadNum();
@@ -538,8 +505,6 @@ public class MYS_PlayerClick : MonoBehaviour
                 if (count == 4)
                 {
                     MYS_DoorFrame.Instance.state = MYS_DoorFrame.DoorFrameState.Open;
-                    MYS_SoundManager.Instance.OnPlayerDoorSound();
-                    MYS_SoundManager.Instance.OnPlayerKeypadSuccess();
                     print("정답입니다.");
                     idx = 0;
                     kn.ReSetKeypadNum();

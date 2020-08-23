@@ -14,12 +14,10 @@ public class MYS_WirteLetter : MonoBehaviour
     public GameObject cup;
     public Transform cupPos;
     public GameObject docLetter;
-    AudioSource audioPlayer;
-    bool audioPlayState;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        audioPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -39,15 +37,7 @@ public class MYS_WirteLetter : MonoBehaviour
         if (buttonActive && !text.activeSelf && writeOn)
         {
             //편지쓰는 애니메이션 실행
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_WrtieLetter;
-            audioPlayer.volume = 0.3f;
-            audioPlayer.Play();
-            audioPlayState = true;
-            writeOn = false;
-        }
 
-        if(audioPlayer.isPlaying == false && audioPlayState)
-        {
             //편지내용 활성화
             text.SetActive(true);
 
@@ -59,7 +49,6 @@ public class MYS_WirteLetter : MonoBehaviour
             cup.transform.forward = -cupPos.right;
             // 최종 암호문을 활성화한다.
             docLetter.SetActive(true);
-            audioPlayState = false;
         }
     }
 }

@@ -11,10 +11,9 @@ public class MYS_AlphaPad : MonoBehaviour
     public string[] keyPadValue = { "S", "N", "D", "E", "V", "L", "C", "K", "I", "G", "T", "M" };
     public string[] inputAlpha = new string[5];
     int idx = 0;
-    AudioSource audioPlayer;
     void Start()
     {
-        audioPlayer = GetComponent<AudioSource>();
+        
     }
 
     void Update()
@@ -25,9 +24,7 @@ public class MYS_AlphaPad : MonoBehaviour
     {
         // inputAlpha배열에 하나씩 넣는다.
         inputAlpha[idx] = keyPadValue[number-1];
-        audioPlayer.clip = MYS_SoundManager.Instance.SFX_Keypad;
-        audioPlayer.volume = 0.3f;
-        audioPlayer.Play();
+        
         //정답 검사
         if (idx == 4)
         {
@@ -39,9 +36,6 @@ public class MYS_AlphaPad : MonoBehaviour
                 if (alphaAnswer[i] != inputAlpha[i])
                 {
                     print("오답입니다.");
-                    audioPlayer.clip = MYS_SoundManager.Instance.SFX_Fail;
-                    audioPlayer.volume = 0.3f;
-                    audioPlayer.Play();
                     idx = 0;
                     ResetInput();
                     break;
@@ -57,11 +51,6 @@ public class MYS_AlphaPad : MonoBehaviour
             {
                 print("정답입니다.");
                 // 엔딩화면 출력
-                audioPlayer.clip = MYS_SoundManager.Instance.SFX_Succes;
-                audioPlayer.volume = 0.3f;
-                audioPlayer.Play();
-
-                MYS_GameManager.Instance.OnPlayerClear();
 
                 idx = 0;
                 ResetInput();

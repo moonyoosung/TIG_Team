@@ -8,17 +8,6 @@ public class MYS_Key : MonoBehaviour
     //만약 오른쪽으로 90도만큼 회전했다면
     //문이 열린다.
     GameObject hit;
-    AudioSource audioPlayer;
-    private void Start()
-    {
-        audioPlayer = GetComponent<AudioSource>();
-    }
-    private void OnCollisionEnter(Collision coll)
-    {
-        audioPlayer.clip = MYS_SoundManager.Instance.SFX_Key;
-        audioPlayer.volume = 0.05f;
-        audioPlayer.Play();
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Key"))
@@ -53,11 +42,8 @@ public class MYS_Key : MonoBehaviour
     }
     void OnCompleteKeyOpen()
     {
-        audioPlayer.clip = MYS_SoundManager.Instance.SFX_KeyOpen;
-        audioPlayer.volume = 0.3f;
-        audioPlayer.Play();
         transform.parent = hit.transform;
         hit.transform.GetComponentInParent<MYS_Cabinet>().keyopen = true;
-        Destroy(gameObject,1f);
+        Destroy(gameObject);
     }
 }

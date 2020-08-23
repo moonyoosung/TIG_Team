@@ -40,11 +40,6 @@ public class MYS_DoorFrame : MonoBehaviour
         {
             
             case DoorFrameState.Idle:
-                if (Input.GetKeyDown(KeyCode.T))
-                {
-                    TmMove = true;
-                    state = DoorFrameState.Close;
-                }
                 //아무런 동작을 하지 않는다.
                 break;
             case DoorFrameState.Open:
@@ -85,14 +80,11 @@ public class MYS_DoorFrame : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            MYS_SoundManager.Instance.OnPlayerDoorSound();
 
             state = DoorFrameState.Close;
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            MYS_SoundManager.Instance.OnPlayerDoorSound();
-
             state = DoorFrameState.Open;
         }
     }

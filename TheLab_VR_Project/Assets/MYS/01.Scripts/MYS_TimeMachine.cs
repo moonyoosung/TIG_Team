@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class MYS_TimeMachine : MonoBehaviour
@@ -32,8 +31,6 @@ public class MYS_TimeMachine : MonoBehaviour
     //public GameObject number1clock;
     public GameObject water;
     public MYS_TimePuzzle TP;
-    public GameObject docLetter;
-    public MYS_Timer timer;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -58,6 +55,11 @@ public class MYS_TimeMachine : MonoBehaviour
             case TMState.Move:
                 TMMove();
                 break;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            mapIdx = 3;
         }
     }
 
@@ -101,36 +103,26 @@ public class MYS_TimeMachine : MonoBehaviour
         if (TP.result)
         {
             mapIdx = 0;
-            if (!docLetter.activeSelf)
-            {
-                MYS_GameManager.Instance.OnPlayerDieDoctor();
-            }
         }
         else
         {
             //이동할 맵을 변경하고
             mapIdx++;
         }
-        if(mapIdx == 1)
-        {
-            timer.transform.gameObject.SetActive(true);
-            timer.timerActive = true;
-        }
         if (mapIdx > 6)
         {
             //플레이어 죽음
-            MYS_GameManager.Instance.OnPlayerDieDoctor();            
         }
 
         //플레이어를 가져간다.
         PlayerChildIdent(true);
 
-        //player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<CharacterController>().enabled = false;
         transform.position = TMPos[mapIdx].position;
         orizinPos = transform.position;
-        player.transform.position = playerPos.position;
-        
-        //player.GetComponent<CharacterController>().enabled = true;
+        //player.transform.localPosition = playerPos.position;
+
+        player.GetComponent<CharacterController>().enabled = true;
 
         if (MYS_Inventory.Instance.inven.Contains(MYS_Clock.Instance.gameObject))
         {
@@ -199,15 +191,10 @@ public class MYS_TimeMachine : MonoBehaviour
     // 서서히 차오르는 물
     public void WaterUp()
     {
-        water.GetComponent<AudioSource>().clip = MYS_SoundManager.Instance.SFX_Water;
-        water.GetComponent<AudioSource>().volume = 0.1f;
-        water.GetComponent<AudioSource>().loop = true;
-        water.GetComponent<AudioSource>().Play();
-
         // 서서히 물이 차오른다.
         iTween.MoveTo(water, iTween.Hash(
                 "position", transform.position + new Vector3(0, 5f, 0),
-                "speed", 0.1f,
+                "speed", 0.2f,
                 "easetype", iTween.EaseType.linear));
         // 캐릭터가 물에 잠기면 UI를 켜준다.
         // 

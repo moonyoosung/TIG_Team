@@ -23,8 +23,6 @@ TagManager:
   - TransitionPuzzle
   - TransPuzzleIdx
   - WriteButton
-  - StartButton
-  - RestartButton
   layers:
   - Default
   - TransparentFX

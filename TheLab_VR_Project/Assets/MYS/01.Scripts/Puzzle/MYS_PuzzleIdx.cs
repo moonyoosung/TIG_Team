@@ -7,20 +7,13 @@ public class MYS_PuzzleIdx : MonoBehaviour
     public MYS_PlayerClick pc;
     public CheckBlocks cb;
     bool corutineState;
-    AudioSource audioPlayer;
-    private void Start()
-    {
-        audioPlayer = GetComponent<AudioSource>();
-    }
     // 블럭이 퍼즐판에 부딪히면
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PuzzlePlane")
         {
             //print("퍼즐 이동 전");
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_PuzzleBlock;
-            audioPlayer.volume = 0.3f;
-            audioPlayer.Play();
+
             MYS_Inventory.Instance.DeleteItemInven(gameObject);
             pc.PutDownGrapObj();
             //transform.gameObject.layer = LayerMask.NameToLayer("Default");

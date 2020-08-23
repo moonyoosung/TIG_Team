@@ -12,12 +12,10 @@ public class CheckPuzzle : MonoBehaviour
     public bool result;
     public Animation reward;
     public GameObject letter;
-    AudioSource audioPlayer;
-    public AudioSource boxAudioPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        audioPlayer = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -29,12 +27,6 @@ public class CheckPuzzle : MonoBehaviour
             letter.transform.GetComponent<BoxCollider>().enabled = true;
             letter.transform.GetComponent<Rigidbody>().useGravity = true;
             reward.Play();
-            boxAudioPlayer.clip = MYS_SoundManager.Instance.SFX_PuzzleOpen;
-            boxAudioPlayer.volume = 0.3f;
-            boxAudioPlayer.Play();
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_Succes;
-            audioPlayer.volume = 0.3f;
-            audioPlayer.Play();
             result = false;
         }
     }

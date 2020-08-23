@@ -11,11 +11,9 @@ public class MYS_Lever : MonoBehaviour
     public bool index;
     MYS_TimePuzzle TP;
     bool value;
-    AudioSource audioPlayer;
     // Start is called before the first frame update
     void Start()
     {
-        audioPlayer = GetComponent<AudioSource>();
         led = GetComponentInChildren<Image>();
         lever = transform.GetChild(1);
         angleX = -45;
@@ -41,18 +39,12 @@ public class MYS_Lever : MonoBehaviour
             angleX = 45;
             led.color = Color.red;
             value = true;
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_LeverOn;
-            audioPlayer.volume = 0.3f;
-            audioPlayer.Play();
         }
         else if(angleX > 0)
         {
             angleX = -45;
             led.color = Color.white;
             value = false;
-            audioPlayer.clip = MYS_SoundManager.Instance.SFX_LeverOff;
-            audioPlayer.volume = 0.3f;
-            audioPlayer.Play();
         }
         TP.InitTable(int.Parse(transform.name), value);
         lever.transform.localEulerAngles = new Vector3(angleX, 0, 0);
