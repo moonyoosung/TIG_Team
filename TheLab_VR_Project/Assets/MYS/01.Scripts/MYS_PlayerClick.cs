@@ -424,7 +424,7 @@ public class MYS_PlayerClick : MonoBehaviour
 
     private void OnClickCabinet(RaycastHit hit)
     {
-        if (hit.transform.gameObject.name.Contains("Cabinet"))
+        if (hit.transform.gameObject.tag.Contains("Cabinet"))
         {
             if (hit.transform.GetComponentInParent<MYS_Cabinet>().keyopen)
             {

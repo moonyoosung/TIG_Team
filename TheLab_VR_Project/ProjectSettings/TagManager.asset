@@ -25,6 +25,7 @@ TagManager:
   - WriteButton
   - StartButton
   - RestartButton
+  - Cabinet
   layers:
   - Default
   - TransparentFX

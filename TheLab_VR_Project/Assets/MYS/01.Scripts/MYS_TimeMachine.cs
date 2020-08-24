@@ -165,6 +165,10 @@ public class MYS_TimeMachine : MonoBehaviour
             MYS_Water.Instace.waterInUI.SetActive(false);
             Decal2.SetActive(true);
         }
+        if(mapIdx == 5)
+        {
+            Decal2.SetActive(false);
+        }
     }
 
     // 플레이어를 자식으로 넣을지 말지 결정하는 함수

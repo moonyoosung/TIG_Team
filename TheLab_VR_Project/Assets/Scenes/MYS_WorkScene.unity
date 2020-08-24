@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 9432988}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1517,7 +1517,7 @@ GameObject:
   - component: {fileID: 45337189}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4346,7 +4346,7 @@ GameObject:
   - component: {fileID: 119231558}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5651,7 +5651,7 @@ GameObject:
   - component: {fileID: 152138944}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6570,7 +6570,7 @@ GameObject:
   - component: {fileID: 186950263}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8009,7 +8009,7 @@ GameObject:
   - component: {fileID: 230546762}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8534,7 +8534,7 @@ GameObject:
   - component: {fileID: 247474742}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10521,7 +10521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317608531}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1823324078}
@@ -11886,7 +11886,7 @@ GameObject:
   - component: {fileID: 357825367}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15537,7 +15537,7 @@ GameObject:
   - component: {fileID: 495593833}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17102,7 +17102,7 @@ GameObject:
   - component: {fileID: 544791249}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19387,7 +19387,7 @@ GameObject:
   - component: {fileID: 618604399}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19515,7 +19515,7 @@ GameObject:
   - component: {fileID: 625503049}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19979,7 +19979,7 @@ GameObject:
   - component: {fileID: 645120936}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21688,7 +21688,7 @@ GameObject:
   - component: {fileID: 708288018}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23052,7 +23052,7 @@ GameObject:
   - component: {fileID: 750880933}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26864,7 +26864,7 @@ GameObject:
   - component: {fileID: 880627790}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34212,7 +34212,7 @@ GameObject:
   - component: {fileID: 1116581196}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34335,7 +34335,7 @@ GameObject:
   - component: {fileID: 1121225865}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39187,7 +39187,7 @@ GameObject:
   - component: {fileID: 1237441023}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39818,7 +39818,7 @@ GameObject:
   - component: {fileID: 1261411732}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45567,7 +45567,7 @@ GameObject:
   - component: {fileID: 1461727700}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48000,7 +48000,7 @@ GameObject:
   - component: {fileID: 1531833234}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48789,7 +48789,7 @@ GameObject:
   - component: {fileID: 1552798255}
   m_Layer: 0
   m_Name: Cabinet (2)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50843,7 +50843,7 @@ GameObject:
   - component: {fileID: 1621831746}
   m_Layer: 0
   m_Name: Cabinet (3)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52519,7 +52519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686937237}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2111761663}
@@ -52690,7 +52690,7 @@ GameObject:
   - component: {fileID: 1695173999}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57168,7 +57168,7 @@ GameObject:
   - component: {fileID: 1838587223}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57786,7 +57786,7 @@ GameObject:
   - component: {fileID: 1862561439}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60699,7 +60699,7 @@ GameObject:
   - component: {fileID: 1971490890}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61412,7 +61412,7 @@ GameObject:
   - component: {fileID: 2002290197}
   m_Layer: 0
   m_Name: Cabinet (1)
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62042,7 +62042,7 @@ GameObject:
   - component: {fileID: 2018248975}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Cabinet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74861,7 +74861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7779841212205972816}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4893568216629348593}
@@ -84687,7 +84687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2487032846650367735}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 764847995844586326}
@@ -89482,7 +89482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2955230336901016422}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 80475816615468743}
@@ -93515,7 +93515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407309071528100995}
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.6, y: 2.42, z: -4.41}
+  m_LocalPosition: {x: -4.6, y: 2.74, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4294527653008945442}
